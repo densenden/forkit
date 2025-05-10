@@ -118,7 +118,7 @@ code {
   
   /* Hero section classes */
   .hero-full-width {
-    @apply relative w-full min-h-[70vh] bg-cover bg-center;
+    @apply relative w-full min-h-70vh bg-cover bg-center;
   }
   
   .hero-content-left {
