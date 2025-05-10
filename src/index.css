@@ -123,17 +123,17 @@ code {
   
   .hero-content-left {
     @apply absolute inset-0 flex items-center justify-start p-8;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent);
+    background: none;
   }
   
   .hero-content-right {
     @apply absolute inset-0 flex items-center justify-end text-right p-8;
-    background: linear-gradient(to left, rgba(0, 0, 0, 0.7), transparent);
+    background: none;
   }
   
   .hero-content-center {
     @apply absolute inset-0 flex items-center justify-center text-center p-8;
-    background-color: rgba(0, 0, 0, 0.5);
+    background: none;
   }
 
   /* Image containers for full width display */
@@ -180,9 +180,26 @@ code {
 
 /* Image sections should be large and impactful */
 .image-section {
-  @apply w-full min-h-70vh overflow-hidden relative;
+  @apply w-full min-h-screen overflow-hidden relative;
 }
 
 .image-section img {
-  @apply w-full h-full object-cover object-center;
+  @apply w-full h-full object-cover object-center absolute inset-0 z-0;
+}
+
+/* Hero content for dark backgrounds */
+.hero-content {
+  @apply relative z-10;
+}
+
+.hero-content h1,
+.hero-content h2,
+.hero-content h3,
+.hero-content p {
+  @apply text-white drop-shadow-lg;
+}
+
+/* Ensure text is readable against image backgrounds */
+.text-on-dark-bg {
+  @apply text-white drop-shadow-lg;
 }

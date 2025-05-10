@@ -104,6 +104,7 @@ module.exports = {
       minHeight: {
         '50vh': '50vh',
         '70vh': '70vh',
+        'screen': '100vh',
       },
     },
   },
