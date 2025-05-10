@@ -164,10 +164,10 @@ const HomePage: React.FC = () => {
       {/* Image Feature - Solution section with background image */}
       <HeroBackground 
         imageSrc="/images/solution/solution_left.jpeg"
-        position="center"
+        position="left"
         overlayOpacity="medium"
       >
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-3xl">
           <h2 className="homepage-hero-title mb-6">
             Digitale Lösungen direkt für kleine Unternehmen
           </h2>
@@ -331,17 +331,17 @@ const HomePage: React.FC = () => {
       {/* Call to Action Section with background image */}
       <HeroBackground 
         imageSrc="/images/content/forkit_restaurant_tablet.jpg"
-        position="center"
+        position="left"
         overlayOpacity="medium"
       >
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-3xl">
           <h2 className="homepage-hero-title mb-6">
             Werde Teil der Bewegung
           </h2>
           <p className="homepage-hero-subtitle mb-8">
             Wir wollen digitale Unabhängigkeit zurückgewinnen - für dich und dein Geschäft.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-4">
             <Link 
               to="/warteliste" 
               className="bg-ocean-600 hover:bg-ocean-700 text-white px-6 py-3 rounded-sm font-lexend font-medium text-base shadow-md transition-all"
