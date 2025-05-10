@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Typography system */
+@layer base {
+  /* Base HTML elements */
+  html {
+    font-family: 'Lexend', sans-serif;
+  }
+
+  /* Default heading styles */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-lexend font-semibold;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl leading-tight;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl leading-tight;
+  }
+
+  h4 {
+    @apply text-lg md:text-xl leading-snug;
+  }
+
+  /* Default paragraph */
+  p {
+    @apply text-slate-700 dark:text-slate-200 leading-relaxed;
+  }
+
+  /* Default link */
+  a {
+    @apply text-primary dark:text-amber-300 hover:underline;
+  }
+}
+
+/* Custom utility classes */
+@layer components {
+  /* Text on images needs to be lightweight and bright */
+  .text-on-image {
+    @apply font-lexend font-light text-white tracking-wide;
+  }
+  
+  .text-on-image-heading {
+    @apply font-lexend font-semibold text-white tracking-wide;
+  }
+
+  /* Headline styles */
+  .headline-hero {
+    @apply font-lexend font-bold text-4xl sm:text-5xl lg:text-6xl text-slate-900 dark:text-gray-100 leading-tight tracking-tight;
+  }
+
+  .headline-section {
+    @apply font-lexend font-semibold text-3xl sm:text-4xl text-slate-900 dark:text-gray-100 leading-tight;
+  }
+
+  .headline-subsection {
+    @apply font-lexend font-medium text-2xl sm:text-3xl text-slate-800 dark:text-gray-200 leading-snug;
+  }
+
+  /* Body text styles */
+  .body-large {
+    @apply text-lg text-slate-700 dark:text-gray-200 leading-relaxed;
+  }
+
+  .body-normal {
+    @apply text-base text-slate-700 dark:text-gray-200;
+  }
+
+  .body-small {
+    @apply text-sm text-slate-600 dark:text-gray-300;
+  }
+
+  /* Caption text */
+  .text-caption {
+    @apply text-xs text-slate-500 dark:text-gray-400;
+  }
+  
+  /* Simple grid layout classes */
+  .grid-1-col {
+    @apply grid grid-cols-1 gap-6;
+  }
+  
+  .grid-2-col {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  }
+  
+  .grid-3-col {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+  
+  .grid-4-col {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
+  }
+  
+  /* Hero section classes */
+  .hero-full-width {
+    @apply relative w-full min-h-[70vh] bg-cover bg-center;
+  }
+  
+  .hero-content-left {
+    @apply absolute inset-0 flex items-center justify-start p-8;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent);
+  }
+  
+  .hero-content-right {
+    @apply absolute inset-0 flex items-center justify-end text-right p-8;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.7), transparent);
+  }
+  
+  .hero-content-center {
+    @apply absolute inset-0 flex items-center justify-center text-center p-8;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Dark mode adjustments */
+.dark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity));
+  color: rgb(229 229 229 / 1);
+}
+
+/* Box shadows and cards for dark mode */
+.dark .card,
+.dark .box-shadow,
+.dark .bg-white {
+  @apply bg-zinc-800 border-zinc-700;
+}
