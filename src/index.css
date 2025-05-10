@@ -208,11 +208,11 @@ code {
 
   /* Dark overlay for hero images */
   .dark-overlay {
-    @apply absolute inset-0 bg-gradient-dark z-5;
+    @apply absolute inset-0 bg-gradient-dark z-10;
   }
 
   .light-overlay {
-    @apply absolute inset-0 bg-gradient-light z-5;
+    @apply absolute inset-0 bg-gradient-light z-10;
   }
 }
 
