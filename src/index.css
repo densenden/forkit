@@ -11,6 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  @apply bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100;
 }
 
 code {
@@ -27,7 +28,7 @@ code {
 
   /* Default heading styles */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-lexend font-semibold;
+    @apply font-lexend font-semibold text-slate-800 dark:text-slate-100;
   }
 
   h1 {
@@ -61,24 +62,24 @@ code {
 @layer components {
   /* Text on images needs to be lightweight and bright */
   .text-on-image {
-    @apply font-lexend font-light text-white tracking-wide;
+    @apply font-lexend font-light text-white tracking-wide drop-shadow-md;
   }
   
   .text-on-image-heading {
-    @apply font-lexend font-semibold text-white tracking-wide;
+    @apply font-lexend font-semibold text-white tracking-wide drop-shadow-md;
   }
 
   /* Headline styles */
   .headline-hero {
-    @apply font-lexend font-bold text-4xl sm:text-5xl lg:text-6xl text-slate-900 dark:text-gray-100 leading-tight tracking-tight;
+    @apply font-lexend font-bold text-4xl sm:text-5xl lg:text-6xl text-slate-800 dark:text-slate-100 leading-tight tracking-tight;
   }
 
   .headline-section {
-    @apply font-lexend font-semibold text-3xl sm:text-4xl text-slate-900 dark:text-gray-100 leading-tight;
+    @apply font-lexend font-semibold text-3xl sm:text-4xl text-slate-800 dark:text-slate-100 leading-tight;
   }
 
   .headline-subsection {
-    @apply font-lexend font-medium text-2xl sm:text-3xl text-slate-800 dark:text-gray-200 leading-snug;
+    @apply font-lexend font-medium text-2xl sm:text-3xl text-slate-700 dark:text-slate-200 leading-snug;
   }
 
   /* Body text styles */
@@ -147,35 +148,61 @@ code {
   
   /* Cards and boxes with lower contrast in dark mode */
   .card {
-    @apply bg-white dark:bg-zinc-800 rounded shadow-sm;
+    @apply bg-white dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700 shadow-sm;
   }
   
   .box {
-    @apply bg-slate-50 dark:bg-zinc-800 rounded p-4;
+    @apply bg-slate-50 dark:bg-slate-800 rounded p-4 border border-slate-100 dark:border-slate-700;
+  }
+
+  /* Form elements in new color scheme */
+  .form-input {
+    @apply bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700
+    rounded-sm px-4 py-2 w-full focus:ring-1 focus:ring-primary-500 focus:border-primary-500 
+    dark:focus:ring-primary-400 dark:focus:border-primary-400;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 border border-transparent 
+    rounded-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 
+    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-slate-600 hover:bg-slate-700 focus:ring-slate-500;
+  }
+
+  .btn-outline {
+    @apply bg-transparent text-primary-600 border-primary-600 
+    hover:bg-primary-50 dark:hover:bg-slate-800 dark:text-primary-400 dark:border-primary-400;
   }
 }
 
 /* Dark mode adjustments */
 .dark {
   --tw-bg-opacity: 1;
-  background-color: rgb(23 23 23 / var(--tw-bg-opacity));
-  color: rgb(229 229 229 / 1);
+  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+  color: rgb(241 245 249 / 1);
 }
 
 /* Box shadows and cards for dark mode */
 .dark .card,
 .dark .box-shadow,
 .dark .bg-white {
-  @apply bg-zinc-800 border-zinc-700;
+  @apply bg-slate-800 border-slate-700;
 }
 
 /* Override any white backgrounds in dark mode */
 .dark .bg-white {
-  @apply bg-zinc-800 !important;
+  @apply bg-slate-800 !important;
 }
 
 .dark .border-white {
-  @apply border-zinc-700 !important;
+  @apply border-slate-700 !important;
 }
 
 /* Image sections should be large and impactful */
