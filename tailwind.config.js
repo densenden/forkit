@@ -27,7 +27,7 @@ module.exports = {
           50: '#EBF3F5',
           100: '#D7E7EC',
           200: '#B0CFD8',
-          300: '#89B7C5',
+          300: '#8CC5D9', // Adjusted for better dark mode visibility
           400: '#629FB1',
           500: '#3B879E',
           600: '#2D6E7E', // Default ist jetzt 600

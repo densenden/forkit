@@ -53,7 +53,7 @@ code {
 
   /* Default link */
   a {
-    @apply text-primary dark:text-amber-300 hover:underline;
+    @apply text-primary dark:text-primary-300 hover:underline;
   }
 }
 
@@ -135,6 +135,24 @@ code {
     @apply absolute inset-0 flex items-center justify-center text-center p-8;
     background-color: rgba(0, 0, 0, 0.5);
   }
+
+  /* Image containers for full width display */
+  .image-container-full {
+    @apply w-full h-auto overflow-hidden;
+  }
+  
+  .image-container-full img {
+    @apply w-full h-full object-cover;
+  }
+  
+  /* Cards and boxes with lower contrast in dark mode */
+  .card {
+    @apply bg-white dark:bg-zinc-800 rounded shadow-sm;
+  }
+  
+  .box {
+    @apply bg-slate-50 dark:bg-zinc-800 rounded p-4;
+  }
 }
 
 /* Dark mode adjustments */
@@ -149,4 +167,22 @@ code {
 .dark .box-shadow,
 .dark .bg-white {
   @apply bg-zinc-800 border-zinc-700;
+}
+
+/* Override any white backgrounds in dark mode */
+.dark .bg-white {
+  @apply bg-zinc-800 !important;
+}
+
+.dark .border-white {
+  @apply border-zinc-700 !important;
+}
+
+/* Image sections should be large and impactful */
+.image-section {
+  @apply w-full min-h-70vh overflow-hidden relative;
+}
+
+.image-section img {
+  @apply w-full h-full object-cover object-center;
 }
