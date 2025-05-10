@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import SectionTitle from '../components/SectionTitle';
 import ImageContainer from '../components/ImageContainer';
+import HeroBackground from '../components/HeroBackground';
 
 const HomePage: React.FC = () => {
   const { t } = useTranslation();
@@ -13,7 +14,7 @@ const HomePage: React.FC = () => {
       title: t('solutions.websites'),
       description: t('solutions.websitesDesc'),
       icon: (
-        <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-8 h-8 text-ocean-600 dark:text-ocean-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       ),
@@ -23,7 +24,7 @@ const HomePage: React.FC = () => {
       title: t('solutions.booking'),
       description: t('solutions.bookingDesc'),
       icon: (
-        <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-8 h-8 text-ocean-600 dark:text-ocean-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
       ),
@@ -33,7 +34,7 @@ const HomePage: React.FC = () => {
       title: t('ideas.title'),
       description: t('ideas.status.received'),
       icon: (
-        <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-8 h-8 text-ocean-600 dark:text-ocean-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
         </svg>
       ),
@@ -59,104 +60,71 @@ const HomePage: React.FC = () => {
   ];
 
   return (
-    <main className="bg-light dark:bg-slate-900 transition-colors duration-300">
-      {/* Hero Section - Text on left (based on forkit_hero_left.jpg) */}
-      <section className="min-h-screen flex items-center pt-24 pb-16 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="headline-hero">
-                {t('hero.title')}
-              </h1>
-              <p className="body-large mt-6 max-w-lg">
-                {t('hero.subtitle')}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Link 
-                  to="/warteliste" 
-                  className="bg-primary hover:bg-primary-600 text-white px-6 py-3 rounded-sm font-urbanist font-medium text-base shadow-sm transition-all"
-                >
-                  {t('hero.cta')}
-                </Link>
-                <Link 
-                  to="/manifest" 
-                  className="bg-transparent border border-primary text-primary dark:text-primary-300 dark:border-primary-500 px-6 py-3 rounded-sm font-urbanist font-medium text-base hover:bg-primary/5 dark:hover:bg-primary-900/30 transition-all"
-                >
-                  {t('manifest.title')}
-                </Link>
-              </div>
-            </div>
-            <div className="relative">
-              <ImageContainer 
-                src="/images/hero/forkit_hero_left.jpg"
-                alt="Digital independence for small businesses"
-                aspectRatio="3:2"
-                className="rounded-sm shadow-lg"
-              >
-                <div className="absolute bottom-0 left-0 p-6 w-full bg-gradient-to-t from-slate-900/80 to-transparent">
-                  <span className="text-on-image text-lg">
-                    Digitale Präsenz ohne Abhängigkeit
-                  </span>
-                </div>
-              </ImageContainer>
-              <div className="absolute -bottom-6 -right-6 bg-white dark:bg-slate-800 rounded-sm p-6 shadow-lg">
-                <div className="font-urbanist font-semibold text-lg text-slate-900 dark:text-white">
-                  &lt;code&gt; <span className="text-primary dark:text-primary-300">digitalFreiheit()</span> &lt;/code&gt;
-                </div>
-              </div>
-            </div>
+    <main className="bg-light dark:bg-deepblue-900 transition-colors duration-300">
+      {/* Hero Section with full background image */}
+      <HeroBackground 
+        imageSrc="/images/hero/forkit_hero_left.jpg"
+        position="left"
+        overlayOpacity="medium"
+      >
+        <div className="max-w-3xl">
+          <h1 className="homepage-hero-title mb-6">
+            {t('hero.title')}
+          </h1>
+          <p className="homepage-hero-subtitle">
+            {t('hero.subtitle')}
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link 
+              to="/warteliste" 
+              className="bg-ocean-600 hover:bg-ocean-700 text-white px-6 py-3 rounded-sm font-lexend font-medium text-base shadow-md transition-all"
+            >
+              {t('hero.cta')}
+            </Link>
+            <Link 
+              to="/manifest" 
+              className="bg-white/10 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-sm font-lexend font-medium text-base hover:bg-white/20 transition-all"
+            >
+              {t('manifest.title')}
+            </Link>
           </div>
         </div>
-      </section>
+      </HeroBackground>
 
-      {/* Manifest Intro Section - Left-aligned text with image top positioning */}
-      <section className="py-20 bg-white dark:bg-slate-800">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1">
-              <ImageContainer 
-                src="/images/hero/manifest-hero_top.jpg"
-                alt="Our manifesto for digital independence"
-                aspectRatio="3:2"
-                className="rounded-sm shadow-lg"
-              >
-                <div className="absolute top-0 left-0 p-6 w-full bg-gradient-to-b from-slate-900/80 to-transparent">
-                  <span className="text-on-image-heading">
-                    Manifest 1.1
-                  </span>
-                </div>
-              </ImageContainer>
-            </div>
-            <div className="order-1 md:order-2">
-              <h2 className="headline-section mb-6">
-                Manifest 1.1
-              </h2>
-              <div className="space-y-6 text-lg">
-                <p>
-                  Wir sehen, was passiert: Die digitale Welt gehört nicht mehr den Menschen, die sie nutzen – sondern den Plattformen, die sie kontrollieren.
-                </p>
-                <p>
-                  Sichtbarkeit ist zur Ware geworden – und die größten Plattformen halten das Monopol.
-                </p>
-                <p>
-                  Wir glauben, dass es anders geht.
-                </p>
-              </div>
-              <div className="mt-10">
-                <Link 
-                  to="/manifest" 
-                  className="font-urbanist font-medium text-primary dark:text-primary-300 hover:underline"
-                >
-                  Vollständiges Manifest lesen →
-                </Link>
-              </div>
-            </div>
+      {/* Manifest Intro Section with background image */}
+      <HeroBackground 
+        imageSrc="/images/hero/manifest-hero_top.jpg"
+        position="right"
+        overlayOpacity="medium"
+      >
+        <div className="max-w-3xl ml-auto">
+          <h2 className="homepage-hero-title mb-6">
+            Manifest 1.1
+          </h2>
+          <div className="space-y-6 text-white text-xl font-light drop-shadow-md">
+            <p>
+              Wir sehen, was passiert: Die digitale Welt gehört nicht mehr den Menschen, die sie nutzen – sondern den Plattformen, die sie kontrollieren.
+            </p>
+            <p>
+              Sichtbarkeit ist zur Ware geworden – und die größten Plattformen halten das Monopol.
+            </p>
+            <p>
+              Wir glauben, dass es anders geht.
+            </p>
+          </div>
+          <div className="mt-10">
+            <Link 
+              to="/manifest" 
+              className="inline-flex items-center font-lexend font-medium text-white text-lg hover:text-white/80 transition-colors"
+            >
+              Vollständiges Manifest lesen <span className="ml-2">→</span>
+            </Link>
           </div>
         </div>
-      </section>
+      </HeroBackground>
 
       {/* Features/CTA Boxes - Grid layout with individual cards */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-900">
+      <section className="py-16 bg-slate-50 dark:bg-deepblue-900">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mb-12">
             <h2 className="headline-section">
@@ -170,12 +138,12 @@ const HomePage: React.FC = () => {
             {features.map((feature, index) => (
               <div 
                 key={index}
-                className="bg-white dark:bg-slate-800 p-6 rounded-sm shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-all"
+                className="bg-white dark:bg-deepblue-800 p-6 rounded-sm shadow-sm border border-gray-200 dark:border-deepblue-700 hover:shadow-md transition-all"
               >
                 <div className="mb-4">
                   {feature.icon}
                 </div>
-                <h3 className="font-urbanist font-semibold text-xl mb-2 text-slate-900 dark:text-white">
+                <h3 className="font-lexend font-semibold text-xl mb-2 text-gray-900 dark:text-white">
                   {feature.title}
                 </h3>
                 <p className="body-small mb-6">
@@ -183,7 +151,7 @@ const HomePage: React.FC = () => {
                 </p>
                 <Link 
                   to={feature.link} 
-                  className="font-urbanist text-sm font-medium text-primary dark:text-primary-300 hover:underline inline-flex items-center"
+                  className="font-lexend text-sm font-medium text-ocean-600 dark:text-ocean-400 hover:underline inline-flex items-center"
                 >
                   Mehr erfahren <span className="ml-1">→</span>
                 </Link>
@@ -193,44 +161,30 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Image Feature - Solution section with left-positioned text */}
-      <section className="py-16 bg-white dark:bg-slate-800">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="headline-section mb-6">
-                Digitale Lösungen direkt für kleine Unternehmen
-              </h2>
-              <p className="body-normal mb-6">
-                Wir entwickeln digitale Lösungen, die speziell auf die Bedürfnisse kleiner und mittlerer Unternehmen zugeschnitten sind. Keine unnötigen Funktionen, keine versteckten Kosten.
-              </p>
-              <Link 
-                to="/loesungen" 
-                className="font-urbanist text-primary dark:text-primary-300 hover:underline inline-flex items-center"
-              >
-                Alle Lösungen entdecken <span className="ml-1">→</span>
-              </Link>
-            </div>
-            <div>
-              <ImageContainer 
-                src="/images/solution/solution_left.jpeg"
-                alt="Digital solutions for small businesses"
-                aspectRatio="3:2"
-                className="rounded-sm shadow-lg"
-              >
-                <div className="absolute bottom-0 left-0 p-6 w-full bg-gradient-to-t from-slate-900/80 to-transparent">
-                  <span className="text-on-image text-lg">
-                    Maßgeschneiderte Lösungen
-                  </span>
-                </div>
-              </ImageContainer>
-            </div>
-          </div>
+      {/* Image Feature - Solution section with background image */}
+      <HeroBackground 
+        imageSrc="/images/solution/solution_left.jpeg"
+        position="left"
+        overlayOpacity="medium"
+      >
+        <div className="max-w-3xl">
+          <h2 className="homepage-hero-title mb-6">
+            Digitale Lösungen direkt für kleine Unternehmen
+          </h2>
+          <p className="homepage-hero-subtitle mb-8">
+            Wir entwickeln digitale Lösungen, die speziell auf die Bedürfnisse kleiner und mittlerer Unternehmen zugeschnitten sind. Keine unnötigen Funktionen, keine versteckten Kosten.
+          </p>
+          <Link 
+            to="/loesungen" 
+            className="inline-flex items-center font-lexend text-white text-lg hover:text-white/80 transition-colors"
+          >
+            Alle Lösungen entdecken <span className="ml-2">→</span>
+          </Link>
         </div>
-      </section>
+      </HeroBackground>
 
-      {/* Target Groups Section - Image with text alignment */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-900">
+      {/* Target Groups Section */}
+      <section className="py-16 bg-gray-50 dark:bg-deepblue-900">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row justify-between items-start mb-12">
             <div>
@@ -248,7 +202,7 @@ const HomePage: React.FC = () => {
               <Link
                 key={index}
                 to={group.path}
-                className="group overflow-hidden rounded-sm border border-slate-200 dark:border-slate-700 transition-all"
+                className="group overflow-hidden rounded-sm border border-gray-200 dark:border-deepblue-700 transition-all"
               >
                 <ImageContainer
                   src={group.image}
@@ -262,9 +216,9 @@ const HomePage: React.FC = () => {
                     </span>
                   </div>
                 </ImageContainer>
-                <div className="p-4 bg-white dark:bg-slate-800 flex items-center space-x-3">
+                <div className="p-4 bg-white dark:bg-deepblue-800 flex items-center space-x-3">
                   <span className="text-2xl">{group.icon}</span>
-                  <span className="font-urbanist font-medium text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary-300 transition-colors">
+                  <span className="font-lexend font-medium text-gray-900 dark:text-white group-hover:text-ocean-600 dark:group-hover:text-ocean-400 transition-colors">
                     {group.name}
                   </span>
                 </div>
@@ -277,7 +231,7 @@ const HomePage: React.FC = () => {
               <Link
                 key={index}
                 to={audience.path}
-                className="px-4 py-2 rounded-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-urbanist font-medium text-slate-900 dark:text-white hover:text-primary dark:hover:text-primary-300 transition-colors"
+                className="px-4 py-2 rounded-sm bg-white dark:bg-deepblue-800 border border-gray-200 dark:border-deepblue-700 font-lexend font-medium text-gray-900 dark:text-white hover:text-ocean-600 dark:hover:text-ocean-400 transition-colors"
               >
                 {audience.name}
               </Link>
@@ -287,7 +241,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Customer Stories Section */}
-      <section className="py-16 bg-white dark:bg-slate-800">
+      <section className="py-16 bg-white dark:bg-deepblue-800">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mb-12">
             <h2 className="headline-section">
@@ -299,7 +253,7 @@ const HomePage: React.FC = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-slate-800 rounded-sm shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+            <div className="bg-white dark:bg-deepblue-800 rounded-sm shadow-sm border border-gray-200 dark:border-deepblue-700 overflow-hidden">
               <div className="h-48">
                 <img 
                   src="/images/content/customer-story_hero_left.jpg" 
@@ -308,7 +262,7 @@ const HomePage: React.FC = () => {
                 />
               </div>
               <div className="p-6">
-                <h3 className="font-urbanist font-semibold text-xl mb-3 text-slate-900 dark:text-white">
+                <h3 className="font-lexend font-semibold text-xl mb-3 text-gray-900 dark:text-white">
                   Vom Foodora-Lieferanten zum eigenen Shop
                 </h3>
                 <p className="body-small mb-4">
@@ -316,14 +270,14 @@ const HomePage: React.FC = () => {
                 </p>
                 <Link 
                   to="/deine-story" 
-                  className="font-urbanist text-sm font-medium text-primary dark:text-primary-300 hover:underline inline-flex items-center"
+                  className="font-lexend text-sm font-medium text-ocean-600 dark:text-ocean-400 hover:underline inline-flex items-center"
                 >
                   Geschichte lesen <span className="ml-1">→</span>
                 </Link>
               </div>
             </div>
             
-            <div className="bg-white dark:bg-slate-800 rounded-sm shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+            <div className="bg-white dark:bg-deepblue-800 rounded-sm shadow-sm border border-gray-200 dark:border-deepblue-700 overflow-hidden">
               <div className="h-48">
                 <img 
                   src="/images/content/customer-story3_hero_left.jpg" 
@@ -332,7 +286,7 @@ const HomePage: React.FC = () => {
                 />
               </div>
               <div className="p-6">
-                <h3 className="font-urbanist font-semibold text-xl mb-3 text-slate-900 dark:text-white">
+                <h3 className="font-lexend font-semibold text-xl mb-3 text-gray-900 dark:text-white">
                   Fotografin findet Kunden ohne Instagram
                 </h3>
                 <p className="body-small mb-4">
@@ -340,14 +294,14 @@ const HomePage: React.FC = () => {
                 </p>
                 <Link 
                   to="/deine-story" 
-                  className="font-urbanist text-sm font-medium text-primary dark:text-primary-300 hover:underline inline-flex items-center"
+                  className="font-lexend text-sm font-medium text-ocean-600 dark:text-ocean-400 hover:underline inline-flex items-center"
                 >
                   Geschichte lesen <span className="ml-1">→</span>
                 </Link>
               </div>
             </div>
             
-            <div className="bg-white dark:bg-slate-800 rounded-sm shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+            <div className="bg-white dark:bg-deepblue-800 rounded-sm shadow-sm border border-gray-200 dark:border-deepblue-700 overflow-hidden">
               <div className="h-48">
                 <img 
                   src="/images/content/restaurant_right.jpeg" 
@@ -356,7 +310,7 @@ const HomePage: React.FC = () => {
                 />
               </div>
               <div className="p-6">
-                <h3 className="font-urbanist font-semibold text-xl mb-3 text-slate-900 dark:text-white">
+                <h3 className="font-lexend font-semibold text-xl mb-3 text-gray-900 dark:text-white">
                   Vom Etsy-Shop zur eigenen Plattform
                 </h3>
                 <p className="body-small mb-4">
@@ -364,7 +318,7 @@ const HomePage: React.FC = () => {
                 </p>
                 <Link 
                   to="/deine-story" 
-                  className="font-urbanist text-sm font-medium text-primary dark:text-primary-300 hover:underline inline-flex items-center"
+                  className="font-lexend text-sm font-medium text-ocean-600 dark:text-ocean-400 hover:underline inline-flex items-center"
                 >
                   Geschichte lesen <span className="ml-1">→</span>
                 </Link>
@@ -374,49 +328,35 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Call to Action Section - Text on right, image on left */}
-      <section className="py-16 bg-primary-50 dark:bg-primary-950/30">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1">
-              <ImageContainer 
-                src="/images/content/forkit_restaurant_tablet.jpg"
-                alt="Join the movement for digital independence"
-                aspectRatio="16:9"
-                className="rounded-sm shadow-lg"
-              >
-                <div className="absolute bottom-0 left-0 p-6 w-full bg-gradient-to-t from-slate-900/80 to-transparent">
-                  <span className="text-on-image text-lg">
-                    Digitale Unabhängigkeit für kleine Unternehmen
-                  </span>
-                </div>
-              </ImageContainer>
-            </div>
-            <div className="order-1 md:order-2">
-              <h2 className="headline-section mb-6">
-                Werde Teil der Bewegung
-              </h2>
-              <p className="body-normal mb-8">
-                Wir wollen digitale Unabhängigkeit zurückgewinnen - für dich und dein Geschäft.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link 
-                  to="/warteliste" 
-                  className="bg-primary hover:bg-primary-600 text-white px-6 py-3 rounded-sm font-urbanist font-medium text-base shadow-sm transition-all"
-                >
-                  {t('waitlist.title')}
-                </Link>
-                <Link 
-                  to="/deine-story" 
-                  className="bg-transparent border border-primary text-primary dark:text-primary-300 dark:border-primary-500 px-6 py-3 rounded-sm font-urbanist font-medium text-base hover:bg-primary/5 dark:hover:bg-primary-900/30 transition-all"
-                >
-                  {t('story.title')}
-                </Link>
-              </div>
-            </div>
+      {/* Call to Action Section with background image */}
+      <HeroBackground 
+        imageSrc="/images/content/forkit_restaurant_tablet.jpg"
+        position="center"
+        overlayOpacity="medium"
+      >
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="homepage-hero-title mb-6">
+            Werde Teil der Bewegung
+          </h2>
+          <p className="homepage-hero-subtitle mb-8">
+            Wir wollen digitale Unabhängigkeit zurückgewinnen - für dich und dein Geschäft.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link 
+              to="/warteliste" 
+              className="bg-ocean-600 hover:bg-ocean-700 text-white px-6 py-3 rounded-sm font-lexend font-medium text-base shadow-md transition-all"
+            >
+              {t('waitlist.title')}
+            </Link>
+            <Link 
+              to="/deine-story" 
+              className="bg-white/10 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-sm font-lexend font-medium text-base hover:bg-white/20 transition-all"
+            >
+              {t('story.title')}
+            </Link>
           </div>
         </div>
-      </section>
+      </HeroBackground>
     </main>
   );
 };
