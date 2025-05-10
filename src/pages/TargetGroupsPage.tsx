@@ -103,10 +103,10 @@ const TargetGroupsPage: React.FC = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-lexend font-bold text-2xl text-dark mb-6">
+            <h2 className="font-lexend font-bold text-2xl text-gray-900 mb-6">
               Plattformabhängigkeit trifft nicht alle gleich
             </h2>
-            <p className="text-gray-600 mb-8">
+            <p className="text-gray-800 mb-8">
               Einige Branchen leiden besonders unter der Macht der Plattformen. Wir haben uns auf diese Schwerpunkte spezialisiert, um gezielt zu helfen:
             </p>
             
@@ -142,16 +142,16 @@ const TargetGroupsPage: React.FC = () => {
                   <div className="bg-gray-50 p-8 rounded-2xl">
                     <div className="flex items-center mb-6">
                       <span className="text-4xl mr-4">{group.icon}</span>
-                      <h3 className="font-lexend font-bold text-2xl text-dark">
+                      <h3 className="font-lexend font-bold text-2xl text-gray-900">
                         {group.title}
                       </h3>
                     </div>
-                    <p className="text-gray-600 mb-8">
+                    <p className="text-gray-800 mb-8">
                       {group.description}
                     </p>
                     <Link 
                       to="/loesungen" 
-                      className="inline-flex items-center font-lexend font-medium text-primary hover:underline"
+                      className="inline-flex items-center font-lexend font-medium text-ocean-600 hover:underline"
                     >
                       Unsere Lösungen für {group.name} <span className="ml-1">→</span>
                     </Link>
@@ -160,13 +160,13 @@ const TargetGroupsPage: React.FC = () => {
                 
                 <div>
                   <div className="mb-8">
-                    <h4 className="font-lexend font-semibold text-xl text-dark mb-4 flex items-center">
+                    <h4 className="font-lexend font-semibold text-xl text-gray-900 mb-4 flex items-center">
                       <svg className="w-6 h-6 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                       </svg>
                       Typische Probleme
                     </h4>
-                    <ul className="space-y-2 text-gray-600">
+                    <ul className="space-y-2 text-gray-800">
                       {group.problems.map((problem, i) => (
                         <li key={i} className="flex items-start">
                           <svg className="w-5 h-5 text-red-500 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -179,13 +179,13 @@ const TargetGroupsPage: React.FC = () => {
                   </div>
                   
                   <div>
-                    <h4 className="font-lexend font-semibold text-xl text-dark mb-4 flex items-center">
+                    <h4 className="font-lexend font-semibold text-xl text-gray-900 mb-4 flex items-center">
                       <svg className="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       Unsere Lösungsansätze
                     </h4>
-                    <ul className="space-y-2 text-gray-600">
+                    <ul className="space-y-2 text-gray-800">
                       {group.solutions.map((solution, i) => (
                         <li key={i} className="flex items-start">
                           <svg className="w-5 h-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -207,10 +207,10 @@ const TargetGroupsPage: React.FC = () => {
       <section className="py-16 bg-primary/5">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-lexend font-bold text-3xl text-dark mb-6">
+            <h2 className="font-lexend font-bold text-3xl text-gray-900 mb-6">
               Keine passende Branche dabei?
             </h2>
-            <p className="text-gray-600 mb-8">
+            <p className="text-gray-800 mb-8">
               Wir erweitern ständig unseren Fokus. Wenn deine Branche auch von Plattformabhängigkeit betroffen ist, lass es uns wissen.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">

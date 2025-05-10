@@ -28,7 +28,7 @@ code {
 
   /* Default heading styles */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-lexend font-semibold text-gray-800 dark:text-gray-100;
+    @apply font-lexend font-semibold text-gray-900 dark:text-gray-100;
   }
 
   h1 {
@@ -49,7 +49,7 @@ code {
 
   /* Default paragraph */
   p {
-    @apply text-gray-700 dark:text-gray-200 leading-relaxed;
+    @apply text-gray-800 dark:text-gray-200 leading-relaxed;
   }
 
   /* Default link */
@@ -71,33 +71,33 @@ code {
 
   /* Headline styles */
   .headline-hero {
-    @apply font-lexend font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-gray-800 dark:text-white leading-tight tracking-tight;
+    @apply font-lexend font-bold text-4xl sm:text-5xl lg:text-6xl text-gray-900 dark:text-white leading-tight tracking-tight;
   }
 
   .headline-section {
-    @apply font-lexend font-semibold text-3xl sm:text-4xl text-gray-800 dark:text-white leading-tight;
+    @apply font-lexend font-semibold text-3xl sm:text-4xl text-gray-900 dark:text-white leading-tight;
   }
 
   .headline-subsection {
-    @apply font-lexend font-medium text-2xl sm:text-3xl text-gray-700 dark:text-gray-200 leading-snug;
+    @apply font-lexend font-medium text-2xl sm:text-3xl text-gray-800 dark:text-gray-200 leading-snug;
   }
 
   /* Body text styles */
   .body-large {
-    @apply text-lg text-gray-700 dark:text-gray-200 leading-relaxed;
+    @apply text-lg text-gray-800 dark:text-gray-200 leading-relaxed;
   }
 
   .body-normal {
-    @apply text-base text-gray-700 dark:text-gray-200;
+    @apply text-base text-gray-800 dark:text-gray-200;
   }
 
   .body-small {
-    @apply text-sm text-gray-600 dark:text-gray-300;
+    @apply text-sm text-gray-700 dark:text-gray-300;
   }
 
   /* Caption text */
   .text-caption {
-    @apply text-xs text-gray-500 dark:text-gray-400;
+    @apply text-xs text-gray-600 dark:text-gray-400;
   }
   
   /* Simple grid layout classes */
@@ -163,7 +163,7 @@ code {
   }
 
   .form-label {
-    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1;
+    @apply block text-sm font-medium text-gray-800 dark:text-gray-300 mb-1;
   }
 
   .btn {
@@ -273,4 +273,17 @@ code {
 /* FAQ container styling */
 .faq-container {
   @apply bg-gray-50 dark:bg-deepblue-900 p-8 rounded-lg;
+}
+
+/* Target group card styling */
+.target-group-card {
+  @apply bg-white p-8 rounded-lg;
+}
+
+.target-group-card h3 {
+  @apply text-gray-900 font-semibold;
+}
+
+.target-group-card p {
+  @apply text-gray-800;
 }
