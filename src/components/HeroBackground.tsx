@@ -38,7 +38,7 @@ const HeroBackground: React.FC<HeroBackgroundProps> = ({
   };
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden" style={{ height: '100vh' }}>
       {/* Background image */}
       <div 
         className="absolute inset-0 w-full h-full z-0"
@@ -55,8 +55,8 @@ const HeroBackground: React.FC<HeroBackgroundProps> = ({
       )}
 
       {/* Content container */}
-      <div className={`relative z-20 flex items-center min-h-screen w-full ${getPositionClass()}`}>
-        <div className="container mx-auto px-6 py-24">
+      <div className={`relative z-20 flex items-center h-screen w-full ${getPositionClass()}`} style={{ height: '100vh' }}>
+        <div className="container mx-auto px-6 py-0">
           {children}
         </div>
       </div>

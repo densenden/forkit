@@ -94,10 +94,10 @@ const HomePage: React.FC = () => {
       {/* Manifest Intro Section with background image */}
       <HeroBackground 
         imageSrc="/images/hero/manifest-hero_top.jpg"
-        position="right"
+        position="center"
         overlayOpacity="medium"
       >
-        <div className="max-w-3xl ml-auto">
+        <div className="max-w-3xl mx-auto text-center">
           <h2 className="homepage-hero-title mb-6">
             Manifest 1.1
           </h2>
@@ -164,10 +164,10 @@ const HomePage: React.FC = () => {
       {/* Image Feature - Solution section with background image */}
       <HeroBackground 
         imageSrc="/images/solution/solution_left.jpeg"
-        position="left"
+        position="center"
         overlayOpacity="medium"
       >
-        <div className="max-w-3xl">
+        <div className="max-w-3xl mx-auto text-center">
           <h2 className="homepage-hero-title mb-6">
             Digitale Lösungen direkt für kleine Unternehmen
           </h2>
