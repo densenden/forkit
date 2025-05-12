@@ -8,6 +8,8 @@ interface TeamMember {
   name: string;
   role: string;
   bio: string;
+  image?: string;
+  longBio?: string;
 }
 
 interface ValueItem {
@@ -24,24 +26,39 @@ interface Milestone {
 // Define default fallback data
 const defaultTeamMembers: TeamMember[] = [
   {
+    name: 'Denis Kreuzer',
+    role: 'Founder & CEO',
+    bio: 'Multidisciplinary Full-Stack Developer & Product Strategist with over 15 years of experience.',
+    image: '/images/team/denis.jpg',
+    longBio: 'Denis brings a unique blend of technical depth and creative vision to Forkit. With extensive experience spanning full-stack development, AI integration, design systems, and product strategy, he bridges the crucial gap between UX, branding, and engineering. As a critical mind and subversive free thinker, Denis is passionate about using AI to do good for people and giving back to society.'
+  },
+  {
     name: 'Sarah Berger',
-    role: 'Founder & Strategist',
-    bio: 'Sarah has over 10 years of experience in digital product development.'
+    role: 'Chief Experience Officer',
+    bio: 'Sarah leads our user experience initiatives with over 10 years in digital product development.',
+    image: '/images/team/sarah.jpg',
+    longBio: 'With a background in both psychology and interface design, Sarah ensures that all our solutions are truly accessible for users of all ages and technical abilities. She specializes in creating intuitive experiences for elderly users who may be unfamiliar with digital interfaces.'
   },
   {
     name: 'Markus Weber',
     role: 'Technical Director',
-    bio: 'Markus is an experienced developer focused on open-source solutions.'
+    bio: 'Markus is an experienced developer focused on creating sustainable open-source solutions.',
+    image: '/images/team/markus.jpg',
+    longBio: 'Having worked with various tech giants before joining Forkit, Markus brings a wealth of knowledge about what doesn\'t work in conventional digital ecosystems. He leads our development team with a focus on privacy, accessibility, and independence from proprietary systems.'
   },
   {
     name: 'Jana Schmidt',
-    role: 'Design & UX',
-    bio: 'Jana combines user-friendly design with a deep understanding of small business needs.'
+    role: 'Design & UX Lead',
+    bio: 'Jana combines user-friendly design with a deep understanding of diverse user needs across generations.',
+    image: '/images/team/jana.jpg',
+    longBio: 'Jana\'s design philosophy centers on creating interfaces that respect users\' cognitive processes regardless of age or technical proficiency. Her research into the specific needs of elderly users has shaped our approach to accessible design that doesn\'t compromise on aesthetics or functionality.'
   },
   {
     name: 'Thomas Müller',
-    role: 'Partnerships',
-    bio: 'Thomas builds bridges between different stakeholders.'
+    role: 'Partnerships & Community',
+    bio: 'Thomas builds bridges between different stakeholders and ensures our solutions reach those who need them most.',
+    image: '/images/team/thomas.jpg',
+    longBio: 'With a background in community organizing and social work, Thomas ensures that our technological solutions are grounded in real human needs. He works directly with elderly community groups to understand their challenges and co-create solutions that truly serve their needs.'
   }
 ];
 
@@ -140,15 +157,30 @@ const AboutPage: React.FC = () => {
   const milestones = getMilestones();
 
   return (
-    <main className="pt-24 pb-16">
-      {/* Header Section */}
-      <section className="bg-primary/5 py-16">
-        <div className="container mx-auto px-4 md:px-6 text-center">
-          <SectionTitle 
-            title={t('about.title')}
-            subtitle={t('about.subtitle')}
-            centered
-          />
+    <main className="pb-16">
+      {/* Hero Section with Background Image */}
+      <section 
+        className="relative h-screen flex items-start justify-center pt-32"
+        style={{
+          backgroundImage: "url('/images/team/team-group.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
+          <h1 className="font-lexend font-bold text-5xl text-white mb-4">
+            Fork The System
+          </h1>
+          <h2 className="font-lexend font-semibold text-3xl text-white mb-6">
+            About Us
+          </h2>
+          <p className="text-white text-xl max-w-3xl mx-auto">
+            We are a collective of subversive free thinkers using technology to build a more inclusive digital world.
+            In an aging society where digital advancements often leave elderly populations behind, 
+            we're committed to restoring balance and creating tools that serve real human needs.
+          </p>
         </div>
       </section>
 
@@ -158,16 +190,19 @@ const AboutPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-lexend font-bold text-3xl text-slate-900 dark:text-white mb-6">
-                {t('about.storyTitle')}
+                Our Mission: Digital Independence For All
               </h2>
               <p className="text-slate-700 dark:text-slate-300 mb-4">
-                {t('about.storyP1')}
+                Great possibilities in digital development have always led to some people being left behind. Our focus is on elderly people - a major group in our aging society who need support to maintain their digital self-determination but are often overlooked by mainstream tech.
               </p>
               <p className="text-slate-700 dark:text-slate-300 mb-4">
-                {t('about.storyP2')}
+                We believe that everyone deserves access to digital tools that enhance their lives, even if they aren't contributing to the endless stream of content on social media platforms. As critical minds, we question the status quo of digital engagement and create alternatives that truly serve people rather than exploit them.
               </p>
               <p className="text-slate-700 dark:text-slate-300 mb-4">
-                {t('about.storyP3')}
+                By harnessing AI and technology for good, we're giving back to society and creating systems that respect users' autonomy, privacy, and unique needs regardless of their technical proficiency. Our subversive approach challenges the dominant narratives about who technology should serve and how it should be designed.
+              </p>
+              <p className="text-slate-700 dark:text-slate-300 mb-4">
+                In an aging society, we see tremendous untapped potential in bridging the digital divide - not by forcing elderly people to adapt to poorly designed systems, but by creating intuitive interfaces that adapt to their needs and respect their existing knowledge and skills.
               </p>
             </div>
             <div className="relative">
@@ -186,8 +221,59 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Our Values */}
+      {/* Our Founder */}
       <section className="py-16 bg-slate-50 dark:bg-slate-900">
+        <div className="container mx-auto px-4 md:px-6">
+          <SectionTitle 
+            title="Meet Our Founder"
+            subtitle="The visionary behind Forkit's mission for digital self-determination"
+            centered
+          />
+          
+          <div className="max-w-5xl mx-auto mt-12 bg-white dark:bg-slate-800 rounded-sm overflow-hidden shadow-md">
+            <div className="grid grid-cols-1 md:grid-cols-3">
+              <div className="col-span-1">
+                <div 
+                  className="h-full min-h-[300px] bg-primary/10 dark:bg-primary-900/30 flex items-center justify-center"
+                  style={{
+                    backgroundImage: "url('/images/team/denis.jpg')",
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  {/* Fallback for missing image */}
+                  <span className="font-lexend font-bold text-8xl text-primary/50 dark:text-primary-300/50 opacity-0">
+                    DK
+                  </span>
+                </div>
+              </div>
+              <div className="col-span-2 p-8">
+                <h3 className="font-lexend font-bold text-2xl text-slate-900 dark:text-white mb-2">
+                  Denis Kreuzer
+                </h3>
+                <p className="text-primary dark:text-primary-300 font-medium mb-6">
+                  Founder & CEO
+                </p>
+                <p className="text-slate-700 dark:text-slate-300 mb-4 font-medium">
+                  Multidisciplinary Full-Stack Developer & Product Strategist with over 15 years of experience.
+                </p>
+                <p className="text-slate-700 dark:text-slate-300 mb-4">
+                  Denis brings a unique blend of technical depth and creative vision to Forkit. With extensive experience spanning full-stack development, AI integration, design systems, and product strategy, he bridges the crucial gap between UX, branding, and engineering.
+                </p>
+                <p className="text-slate-700 dark:text-slate-300 mb-4">
+                  As a critical mind and subversive free thinker, Denis is passionate about using AI to do good for people and giving back to society. He believes in the power of technology to create more inclusive digital ecosystems, with a special focus on elderly people—a major group often left behind in the digital revolution.
+                </p>
+                <blockquote className="border-l-4 border-primary dark:border-primary-400 pl-4 italic text-slate-700 dark:text-slate-300 mb-4">
+                  "In an aging society, we need to support those who might not be uploading videos to social media, but who have just as much right to digital self-determination. The great possibilities in digital development have always led to some being left behind—our mission is to change that."
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Our Values */}
+      <section className="py-16">
         <div className="container mx-auto px-4 md:px-6">
           <SectionTitle 
             title={t('about.valuesTitle')}
@@ -230,19 +316,28 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Our Team */}
-      <section className="py-16">
+      <section className="py-16 bg-slate-50 dark:bg-slate-900">
         <div className="container mx-auto px-4 md:px-6">
           <SectionTitle 
             title={t('about.teamTitle')}
-            subtitle={t('about.teamSubtitle')}
+            subtitle="The critical minds working together to create more inclusive digital solutions"
             centered
           />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-            {teamMembers.map((member: TeamMember, index: number) => (
+            {teamMembers.filter(member => member.name !== "Denis Kreuzer").map((member: TeamMember, index: number) => (
               <div key={index} className="bg-white dark:bg-slate-800 rounded-sm overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-all">
-                <div className={`bg-primary/${20 - (index * 5 % 15)} dark:bg-primary-800/${20 + (index * 5 % 15)} h-48 flex items-center justify-center`}>
-                  <span className="font-lexend font-bold text-4xl text-primary/50 dark:text-primary-300/50">
+                <div 
+                  className="h-48 flex items-center justify-center bg-primary/10 dark:bg-primary-800/20"
+                  style={{
+                    backgroundImage: `url('${member.image || ''}')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                  }}
+                >
+                  {/* Initials shown if image fails to load */}
+                  <span className={`font-lexend font-bold text-4xl text-primary/50 dark:text-primary-300/50 ${member.image ? 'opacity-0' : 'opacity-100'}`}>
                     {member.name.split(' ')[0][0]}{member.name.split(' ')[1][0]}
                   </span>
                 </div>
@@ -253,8 +348,11 @@ const AboutPage: React.FC = () => {
                   <p className="text-primary dark:text-primary-300 font-medium text-sm mb-4">
                     {member.role}
                   </p>
-                  <p className="text-slate-700 dark:text-slate-300 text-sm">
+                  <p className="text-slate-700 dark:text-slate-300 text-sm mb-4">
                     {member.bio}
+                  </p>
+                  <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                    {member.longBio}
                   </p>
                 </div>
               </div>
