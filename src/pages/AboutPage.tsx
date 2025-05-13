@@ -30,7 +30,7 @@ const defaultTeamMembers: TeamMember[] = [
     role: 'Founder & CEO',
     bio: 'Multidisciplinary Full-Stack Developer & Product Strategist with over 15 years of experience.',
     image: '/images/team/denis.jpg',
-    longBio: 'Denis brings a unique blend of technical depth and creative vision to Forkit. With extensive experience spanning full-stack development, AI integration, design systems, and product strategy, he bridges the crucial gap between UX, branding, and engineering. As a critical mind and subversive free thinker, Denis is passionate about using AI to do good for people and giving back to society.'
+    longBio: 'Denis brings a unique blend of technical depth and creative vision to Fork:it. With extensive experience spanning full-stack development, AI integration, design systems, and product strategy, he bridges the crucial gap between UX, branding, and engineering. As a critical mind and subversive free thinker, Denis is passionate about using AI to do good for people and giving back to society.'
   },
   {
     name: 'Sarah Berger',
@@ -44,7 +44,7 @@ const defaultTeamMembers: TeamMember[] = [
     role: 'Technical Director',
     bio: 'Markus is an experienced developer focused on creating sustainable open-source solutions.',
     image: '/images/team/markus.jpg',
-    longBio: 'Having worked with various tech giants before joining Forkit, Markus brings a wealth of knowledge about what doesn\'t work in conventional digital ecosystems. He leads our development team with a focus on privacy, accessibility, and independence from proprietary systems.'
+    longBio: 'Having worked with various tech giants before joining Fork:it, Markus brings a wealth of knowledge about what doesn\'t work in conventional digital ecosystems. He leads our development team with a focus on privacy, accessibility, and independence from proprietary systems.'
   },
   {
     name: 'Jana Schmidt',
@@ -85,7 +85,7 @@ const defaultMilestones: Milestone[] = [
   {
     year: '2022',
     title: 'The Idea Emerges',
-    description: 'From frustration over increasing platform dependency, the idea for FORKIT is born.'
+    description: 'From frustration over increasing platform dependency, the idea for Fork:it is born.'
   },
   {
     year: '2023',
@@ -100,7 +100,7 @@ const defaultMilestones: Milestone[] = [
   {
     year: '2024',
     title: 'Official Founding',
-    description: 'FORKIT is established as a company focused on digital self-determination.'
+    description: 'Fork:it is established as a company focused on digital self-determination.'
   },
   {
     year: '2024',
@@ -171,7 +171,7 @@ const AboutPage: React.FC = () => {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
           <h1 className="font-lexend font-bold text-5xl text-white mb-4">
-            Fork The System
+            Fork:it
           </h1>
           <h2 className="font-lexend font-semibold text-3xl text-white mb-6">
             About Us
@@ -226,7 +226,7 @@ const AboutPage: React.FC = () => {
         <div className="container mx-auto px-4 md:px-6">
           <SectionTitle 
             title="Meet Our Founder"
-            subtitle="The visionary behind Forkit's mission for digital self-determination"
+            subtitle="The visionary behind Fork:it's mission for digital self-determination"
             centered
           />
           
@@ -258,7 +258,7 @@ const AboutPage: React.FC = () => {
                   Multidisciplinary Full-Stack Developer & Product Strategist with over 15 years of experience.
                 </p>
                 <p className="text-slate-700 dark:text-slate-300 mb-4">
-                  Denis brings a unique blend of technical depth and creative vision to Forkit. With extensive experience spanning full-stack development, AI integration, design systems, and product strategy, he bridges the crucial gap between UX, branding, and engineering.
+                  Denis brings a unique blend of technical depth and creative vision to Fork:it. With extensive experience spanning full-stack development, AI integration, design systems, and product strategy, he bridges the crucial gap between UX, branding, and engineering.
                 </p>
                 <p className="text-slate-700 dark:text-slate-300 mb-4">
                   As a critical mind and subversive free thinker, Denis is passionate about using AI to do good for people and giving back to society. He believes in the power of technology to create more inclusive digital ecosystems, with a special focus on elderly people—a major group often left behind in the digital revolution.

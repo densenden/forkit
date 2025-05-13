@@ -1,6 +1,9 @@
-# Forkit - Web Development & Digital Agency Website
+# Fork:it - Digital Independence Platform
 
-A modern, responsive website for a web development and digital agency built with React, TypeScript, and Tailwind CSS.
+[![Live Website](https://img.shields.io/badge/Live-forkit.sen.studio-blue?style=for-the-badge&logo=vercel)](https://forkit.sen.studio)
+[![Vercel](https://img.shields.io/badge/Powered%20by-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com)
+
+A modern, responsive website for a platform focused on digital independence and self-determination, built with React, TypeScript, and Tailwind CSS.
 
 ## Features
 
@@ -9,13 +12,14 @@ A modern, responsive website for a web development and digital agency built with
 - 🎨 Modern UI with Lexend font family
 - 🧩 Component-based architecture
 - 🚀 Fast and lightweight
+- 👴 Focus on accessibility and inclusivity, especially for elderly users
 
 ## Pages
 
-- **Home**: Agency introduction and service overview
-- **Services**: Detailed service descriptions
-- **Portfolio**: Showcase of past work with filterable categories
-- **About**: Company story, values, and team
+- **Home**: Platform introduction and service overview
+- **About**: Our story, values, and team
+- **Target Groups**: Specialized solutions for different audiences
+- **Blog**: Articles and resources about digital independence
 - **Contact**: Contact form and information
 
 ## Getting Started
@@ -60,7 +64,7 @@ yarn start
 ## Project Structure
 
 ```
-forkit/
+fork:it/
 ├── public/
 ├── src/
 │   ├── assets/           # Images and other static assets
@@ -71,6 +75,10 @@ forkit/
 │   └── index.tsx         # Application entry point
 └── package.json
 ```
+
+## Our Mission
+
+Fork:it is dedicated to promoting digital self-determination and helping those often left behind in the digital revolution. We focus on creating accessible tools and resources especially for elderly users, ensuring that everyone can participate in the digital world on their own terms.
 
 ## Customization
 

@@ -1,19 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ThemeToggle from './ThemeToggle';
 
 interface RouteType {
   path: string;
   name: string;
   element: React.ReactNode;
+  navSection?: string;
+  showInNav?: boolean;
 }
 
 interface NavbarProps {
   currentLang: string;
   routes: RouteType[];
+  setCurrentLang: (lang: string) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ currentLang, routes }) => {
+const Navbar: React.FC<NavbarProps> = ({ currentLang, routes, setCurrentLang }) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -47,6 +51,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes }) => {
     };
   }, []);
 
+  useEffect(() => {
+    // Close menu when route changes
+    setIsOpen(false);
+    setOpenDropdown(null);
+  }, [location.pathname]);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -56,32 +66,37 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes }) => {
     setOpenDropdown(null);
   };
 
-  // Organize routes in a more logical structure
+  const toggleLanguage = () => {
+    const newLang = currentLang === 'de' ? 'en' : 'de';
+    setCurrentLang(newLang);
+  };
+
+  // Organize routes based on new navigation structure
   const menuGroups = {
-    // Main section with Homepage and Manifest
-    main: {
-      name: t('nav.home'),
-      items: routes.filter(route => ['/', '/manifest'].includes(route.path)),
+    // Start
+    start: {
+      name: 'Start',
+      items: routes.filter(route => route.navSection === 'start'),
     },
-    // For whom and what we're building (core offering)
-    offering: {
-      name: t('nav.solutions'),
-      items: routes.filter(route => ['/loesungen', '/fuer-wen'].includes(route.path)),
+    // Von Uns
+    'von-uns': {
+      name: 'Von uns',
+      items: routes.filter(route => route.navSection === 'von-uns'),
     },
-    // Ways to participate
-    participate: {
-      name: t('nav.participate'),
-      items: routes.filter(route => ['/partner-werden', '/deine-story', '/name-voting'].includes(route.path)),
+    // Für Euch
+    'fuer-euch': {
+      name: 'Für euch',
+      items: routes.filter(route => route.navSection === 'fuer-euch'),
     },
-    // Information and resources
-    resources: {
-      name: t('nav.resources'),
-      items: routes.filter(route => ['/blog', '/ideen', '/ueber-uns'].includes(route.path)),
+    // Ressourcen
+    ressourcen: {
+      name: 'Ressourcen',
+      items: routes.filter(route => route.navSection === 'ressourcen'),
     },
     // Action items remain separate for emphasis
     actions: {
       name: t('actions'),
-      items: routes.filter(route => ['/warteliste', '/kontakt'].includes(route.path)),
+      items: routes.filter(route => route.navSection === 'actions'),
     }
   };
 
@@ -93,12 +108,21 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes }) => {
     }
   };
 
+  const isActiveSection = (section: string): boolean => {
+    const activePage = routes.find(route => route.path === location.pathname);
+    return activePage?.navSection === section;
+  };
+
   return (
-    <nav className={`fixed w-full z-40 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-sm shadow-md py-1' : 'bg-transparent py-2'}`}>
+    <nav className={`fixed w-full z-40 transition-all duration-300 ${
+      scrolled 
+        ? 'bg-white dark:bg-deepblue-950 shadow-md py-1' 
+        : 'bg-transparent dark:bg-deepblue-950/80 backdrop-blur-sm py-2'
+    }`}>
       <div className="container mx-auto px-3 md:px-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="text-xl font-lexend font-bold text-primary tracking-tight">
-            <span className="text-dark">Fork</span>it
+            <span className="text-dark dark:text-white">Fork</span>:it
           </Link>
 
           {/* Desktop Navigation */}
@@ -107,13 +131,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes }) => {
             {Object.entries(menuGroups).filter(([key]) => key !== 'actions').map(([key, group]) => (
               <div key={key} className="relative">
                 <button 
-                  className={`font-lexend text-xs font-medium px-2 py-2 hover:text-primary rounded-md flex items-center ${
-                    openDropdown === key ? 'text-primary' : 
-                    location.pathname === '/' && key === 'main' ? 'text-primary' :
-                    (key === 'offering' && ['/loesungen', '/fuer-wen'].includes(location.pathname)) ||
-                    (key === 'participate' && ['/partner-werden', '/deine-story', '/name-voting'].includes(location.pathname)) ||
-                    (key === 'resources' && ['/blog', '/ideen', '/ueber-uns'].includes(location.pathname))
-                    ? 'text-primary' : 'text-gray-700'
+                  className={`font-lexend text-xs font-medium px-2 py-2 rounded-sm flex items-center ${
+                    openDropdown === key || isActiveSection(key) 
+                      ? 'text-primary dark:text-ocean-300 bg-primary/5 dark:bg-ocean-900/30' 
+                      : 'text-gray-700 dark:text-gray-200 hover:bg-primary/5 dark:hover:bg-ocean-900/30 hover:text-primary dark:hover:text-ocean-300'
                   }`}
                   onClick={() => toggleDropdown(key)}
                 >
@@ -125,15 +146,15 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes }) => {
                 
                 {/* Dropdown menu */}
                 {openDropdown === key && (
-                  <div className="absolute top-full left-0 mt-1 bg-white rounded-md shadow-lg py-1 min-w-[180px] z-50">
+                  <div className="absolute top-full left-0 mt-1 bg-white dark:bg-deepblue-900 rounded-sm shadow-lg py-1 min-w-[180px] z-50">
                     {group.items.map((route) => (
                       <Link
                         key={route.path}
                         to={route.path}
-                        className={`block px-4 py-2 text-xs hover:bg-gray-100 ${
+                        className={`block px-4 py-2 text-xs hover:bg-primary/5 dark:hover:bg-ocean-900/30 ${
                           location.pathname === route.path
-                            ? 'text-primary font-medium'
-                            : 'text-gray-700'
+                            ? 'text-primary dark:text-ocean-300 font-medium bg-primary/5 dark:bg-ocean-900/20'
+                            : 'text-gray-700 dark:text-gray-300'
                         }`}
                         onClick={closeMenu}
                       >
@@ -146,28 +167,48 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes }) => {
             ))}
           </div>
           
-          {/* Action Items */}
+          {/* Action Items and Theme/Language Toggles */}
           <div className="hidden md:flex items-center space-x-2">
             {menuGroups.actions.items.map((route) => (
               <Link
                 key={route.path}
                 to={route.path}
-                className={`font-lexend text-xs font-medium px-2 py-1 rounded-md ${
-                  route.path === '/warteliste' 
-                    ? 'bg-primary text-white hover:bg-primary/90' 
-                    : 'border border-gray-300 hover:border-primary hover:text-primary'
+                className={`font-lexend text-xs font-medium px-2 py-1 rounded-sm ${
+                  route.path === location.pathname
+                    ? 'bg-primary text-white' 
+                    : route.path === '/warteliste'
+                      ? 'bg-primary text-white hover:bg-primary-600'
+                      : 'bg-white dark:bg-deepblue-900 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:border-primary hover:text-primary dark:hover:border-ocean-400 dark:hover:text-ocean-300'
                 }`}
               >
                 {route.name}
               </Link>
             ))}
+            
+            {/* Theme Toggle & Language Switcher moved to the right */}
+            <div className="flex items-center ml-3 space-x-2">
+              <ThemeToggle />
+              <button 
+                onClick={toggleLanguage}
+                className="px-2 py-1 bg-white dark:bg-deepblue-900 text-gray-700 dark:text-gray-200 rounded-sm border border-gray-300 dark:border-gray-600 font-lexend font-medium text-xs shadow-sm hover:border-primary hover:text-primary dark:hover:border-ocean-400 dark:hover:text-ocean-300 transition-all"
+              >
+                {currentLang === 'de' ? 'EN' : 'DE'}
+              </button>
+            </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          {/* Mobile Menu Button and Language/Theme Switches */}
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
+            <button 
+              onClick={toggleLanguage}
+              className="px-2 py-1 bg-white dark:bg-deepblue-900 text-gray-700 dark:text-gray-200 rounded-sm border border-gray-300 dark:border-gray-600 font-lexend font-medium text-xs shadow-sm hover:border-primary hover:text-primary dark:hover:border-ocean-400 dark:hover:text-ocean-300 transition-all"
+            >
+              {currentLang === 'de' ? 'EN' : 'DE'}
+            </button>
             <button
               onClick={toggleMenu}
-              className="text-gray-700 focus:outline-none"
+              className="text-gray-700 dark:text-white focus:outline-none ml-2"
               aria-label="Toggle menu"
             >
               {isOpen ? (
@@ -186,7 +227,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes }) => {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 transition-all duration-300 overflow-hidden ${
+        className={`md:hidden absolute top-full left-0 right-0 bg-white dark:bg-deepblue-900 border-b border-gray-200 dark:border-deepblue-800 transition-all duration-300 overflow-hidden ${
           isOpen ? 'max-h-[80vh] opacity-100 shadow-md overflow-y-auto' : 'max-h-0 opacity-0'
         }`}
       >
@@ -194,10 +235,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes }) => {
           {/* Mobile accordion menu */}
           <div className="flex flex-col space-y-1">
             {Object.entries(menuGroups).filter(([key]) => key !== 'actions').map(([key, group]) => (
-              <div key={key} className="border-b border-gray-100 pb-1">
+              <div key={key} className="border-b border-gray-100 dark:border-deepblue-800 pb-1">
                 <button 
                   className={`w-full text-left font-lexend py-2 flex justify-between items-center ${
-                    openDropdown === `mobile-${key}` ? 'text-primary font-medium' : 'text-gray-700'
+                    openDropdown === `mobile-${key}` || isActiveSection(key) 
+                      ? 'text-primary dark:text-ocean-300 font-medium' 
+                      : 'text-gray-700 dark:text-gray-200'
                   }`}
                   onClick={() => toggleDropdown(`mobile-${key}`)}
                 >
@@ -209,7 +252,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes }) => {
                 
                 {/* Mobile submenu */}
                 <div className={`overflow-hidden transition-all duration-200 ${
-                  openDropdown === `mobile-${key}` ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'
+                  openDropdown === `mobile-${key}` ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                 }`}>
                   {group.items.map((route) => (
                     <Link
@@ -217,8 +260,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes }) => {
                       to={route.path}
                       className={`block pl-4 py-2 text-sm ${
                         location.pathname === route.path
-                          ? 'text-primary'
-                          : 'text-gray-600'
+                          ? 'text-primary dark:text-ocean-300 bg-primary/5 dark:bg-ocean-900/20'
+                          : 'text-gray-600 dark:text-gray-300 hover:bg-primary/5 dark:hover:bg-ocean-900/30'
                       }`}
                       onClick={closeMenu}
                     >
@@ -235,10 +278,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes }) => {
                 <Link
                   key={route.path}
                   to={route.path}
-                  className={`font-lexend text-sm font-medium py-2 text-center rounded-md ${
-                    route.path === '/warteliste' 
-                      ? 'bg-primary text-white' 
-                      : 'border border-gray-300 text-gray-700'
+                  className={`font-lexend text-sm font-medium py-2 text-center rounded-sm ${
+                    route.path === location.pathname
+                      ? 'bg-primary text-white'
+                      : route.path === '/warteliste' 
+                        ? 'bg-primary text-white hover:bg-primary-600' 
+                        : 'bg-white dark:bg-deepblue-900 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200'
                   }`}
                   onClick={closeMenu}
                 >
