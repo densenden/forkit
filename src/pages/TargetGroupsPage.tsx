@@ -25,7 +25,8 @@ const TargetGroupsPage: React.FC = () => {
         'Unabhängiges Reservierungssystem ohne Abokosten',
         'Direktes Liefersystem ohne Provisionen',
         'Einfache Verwaltung von Speisekarten und Angeboten'
-      ]
+      ],
+      imagePath: '/images/target/target-gastronomy_left.jpg'
     },
     {
       id: 'retail',
@@ -44,7 +45,8 @@ const TargetGroupsPage: React.FC = () => {
         'Direkter Kundenkontakt & Datenhoheit',
         'Einfaches Bestandsmanagement',
         'Integration von lokalen Abhol- und Lieferoptionen'
-      ]
+      ],
+      imagePath: '/images/target/target-retail.jpg'
     },
     {
       id: 'coaches',
@@ -63,7 +65,8 @@ const TargetGroupsPage: React.FC = () => {
         'Branding-konforme digitale Präsenz',
         'Flexible Termingestaltung mit Kalender-Integration',
         'Direkter Kontakt und Nachbetreuung von Kunden'
-      ]
+      ],
+      imagePath: '/images/target/target-coach.jpg'
     },
     {
       id: 'creatives',
@@ -82,14 +85,15 @@ const TargetGroupsPage: React.FC = () => {
         'Direktes Annahmen von Aufträgen ohne Vermittler',
         'Individuelle Preisgestaltung und Angebote',
         'Einfache Darstellung von Referenzen und Arbeitsproben'
-      ]
+      ],
+      imagePath: '/images/target/target-creative.jpg'
     }
   ];
 
   return (
     <main className="pt-24 pb-16">
       {/* Header Section */}
-      <section className="bg-primary/5 py-16">
+      <section className="bg-primary dark:bg-deepblue-900 py-16" style={{ opacity: 0.05 }}>
         <div className="container mx-auto px-4 md:px-6">
           <SectionTitle 
             title="Für wen ist das?" 
@@ -100,13 +104,13 @@ const TargetGroupsPage: React.FC = () => {
       </section>
 
       {/* Introduction */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-deepblue-950">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-lexend font-bold text-2xl text-gray-900 mb-6">
+            <h2 className="font-lexend font-bold text-2xl text-gray-900 dark:text-white mb-6">
               Plattformabhängigkeit trifft nicht alle gleich
             </h2>
-            <p className="text-gray-800 mb-8">
+            <p className="text-gray-800 dark:text-gray-200 mb-8">
               Einige Branchen leiden besonders unter der Macht der Plattformen. Wir haben uns auf diese Schwerpunkte spezialisiert, um gezielt zu helfen:
             </p>
             
@@ -115,10 +119,18 @@ const TargetGroupsPage: React.FC = () => {
                 <a
                   key={group.id}
                   href={`#${group.id}`}
-                  className="px-6 py-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all flex items-center space-x-3"
+                  className="image-with-text-overlay h-40 w-64 rounded-lg overflow-hidden transition-all"
                 >
-                  <span className="text-2xl">{group.icon}</span>
-                  <span className="font-lexend font-medium">{group.name}</span>
+                  <img 
+                    src={group.imagePath} 
+                    alt={group.name} 
+                    className="w-full h-full object-cover transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black to-transparent opacity-70 hover:opacity-80 transition-opacity"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
+                    <span className="text-3xl mb-2">{group.icon}</span>
+                    <span className="font-lexend font-medium text-white text-lg">{group.name}</span>
+                  </div>
                 </a>
               ))}
             </div>
@@ -127,7 +139,7 @@ const TargetGroupsPage: React.FC = () => {
       </section>
 
       {/* Target Groups Detailed */}
-      <section className="py-16">
+      <section className="py-16 bg-gray-50 dark:bg-deepblue-900">
         <div className="container mx-auto px-4 md:px-6">
           <div className="space-y-20">
             {targetGroups.map((group, index) => (
@@ -139,34 +151,43 @@ const TargetGroupsPage: React.FC = () => {
                 }`}
               >
                 <div className={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                  <div className="bg-gray-50 p-8 rounded-2xl">
-                    <div className="flex items-center mb-6">
-                      <span className="text-4xl mr-4">{group.icon}</span>
-                      <h3 className="font-lexend font-bold text-2xl text-gray-900">
-                        {group.title}
-                      </h3>
+                  <div className="image-with-text-overlay rounded-xl overflow-hidden h-full min-h-[300px]">
+                    <img 
+                      src={group.imagePath} 
+                      alt={group.title} 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="overlay"></div>
+                    <div className="text-content p-8">
+                      <div className="flex items-center mb-6">
+                        <span className="text-4xl mr-4">{group.icon}</span>
+                        <h3 className="font-lexend font-bold text-2xl text-white">
+                          {group.title}
+                        </h3>
+                      </div>
+                      <p className="text-white mb-8 opacity-90">
+                        {group.description}
+                      </p>
+                      <Link 
+                        to="/loesungen" 
+                        className="inline-flex items-center font-lexend font-medium text-white bg-primary hover:bg-primary-600 px-4 py-2 rounded transition-all"
+                        style={{ opacity: 0.8 }}
+                      >
+                        Unsere Lösungen für {group.name} <span className="ml-1">→</span>
+                      </Link>
                     </div>
-                    <p className="text-gray-800 mb-8">
-                      {group.description}
-                    </p>
-                    <Link 
-                      to="/loesungen" 
-                      className="inline-flex items-center font-lexend font-medium text-ocean-600 hover:underline"
-                    >
-                      Unsere Lösungen für {group.name} <span className="ml-1">→</span>
-                    </Link>
                   </div>
                 </div>
                 
                 <div>
-                  <div className="mb-8">
-                    <h4 className="font-lexend font-semibold text-xl text-gray-900 mb-4 flex items-center">
+                  <div className="bg-white dark:bg-deepblue-900 p-8 rounded-xl shadow-sm mb-8">
+                    <h4 className="font-lexend font-semibold text-xl text-gray-900 dark:text-white mb-4 flex items-center">
                       <svg className="w-6 h-6 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                       </svg>
                       Typische Probleme
                     </h4>
-                    <ul className="space-y-2 text-gray-800">
+                    <ul className="space-y-3 text-gray-800 dark:text-gray-200">
                       {group.problems.map((problem, i) => (
                         <li key={i} className="flex items-start">
                           <svg className="w-5 h-5 text-red-500 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -178,14 +199,14 @@ const TargetGroupsPage: React.FC = () => {
                     </ul>
                   </div>
                   
-                  <div>
-                    <h4 className="font-lexend font-semibold text-xl text-gray-900 mb-4 flex items-center">
+                  <div className="bg-white dark:bg-deepblue-900 p-8 rounded-xl shadow-sm">
+                    <h4 className="font-lexend font-semibold text-xl text-gray-900 dark:text-white mb-4 flex items-center">
                       <svg className="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       Unsere Lösungsansätze
                     </h4>
-                    <ul className="space-y-2 text-gray-800">
+                    <ul className="space-y-3 text-gray-800 dark:text-gray-200">
                       {group.solutions.map((solution, i) => (
                         <li key={i} className="flex items-start">
                           <svg className="w-5 h-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -204,25 +225,26 @@ const TargetGroupsPage: React.FC = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-primary/5">
+      <section className="py-16 bg-primary dark:bg-deepblue-900" style={{ opacity: 0.05 }}>
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-lexend font-bold text-3xl text-gray-900 mb-6">
+            <h2 className="font-lexend font-bold text-3xl text-gray-900 dark:text-white mb-6">
               Keine passende Branche dabei?
             </h2>
-            <p className="text-gray-800 mb-8">
+            <p className="text-gray-800 dark:text-gray-200 mb-8">
               Wir erweitern ständig unseren Fokus. Wenn deine Branche auch von Plattformabhängigkeit betroffen ist, lass es uns wissen.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link 
                 to="/deine-story" 
-                className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-lexend font-medium text-base shadow-sm transition-all"
+                className="bg-primary hover:bg-primary-600 text-white px-6 py-3 rounded-md font-lexend font-medium text-base shadow-sm transition-all"
               >
                 Erzähl uns deine Story
               </Link>
               <Link 
                 to="/kontakt" 
-                className="bg-transparent border border-primary text-primary px-6 py-3 rounded-md font-lexend font-medium text-base hover:bg-primary/5 transition-all"
+                className="bg-transparent border border-primary text-primary dark:text-ocean-300 dark:border-ocean-300 px-6 py-3 rounded-md font-lexend font-medium text-base hover:bg-primary hover:text-white dark:hover:bg-ocean-900 transition-all"
+                style={{ opacity: 0.05 }}
               >
                 Kontakt aufnehmen
               </Link>

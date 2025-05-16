@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      .primary-fill {
+        fill: #76a6b9;
+      }
+      .secondary-fill {
+        fill: #092533;
+      }
+    }
+    @media (prefers-color-scheme: light) {
+      .primary-fill {
+        fill: #76a6b9;
+      }
+      .secondary-fill {
+        fill: #fff;
+      }
+    }
+  </style>
+  <rect class="primary-fill" x="127.14" y="279.15" width="136.04" height="328.11"/>
+  <rect class="secondary-fill" x="190.36" y="47.07" width="322.5" height="120.04"/>
+  <rect class="primary-fill" x="190.36" y="279.15" width="289.7" height="113.64"/>
+  <rect class="secondary-fill" x="127.14" y="47.07" width="136.04" height="198.87"/>
+</svg> 

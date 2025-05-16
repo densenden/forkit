@@ -23,6 +23,19 @@ module.exports = {
         '9xl': ['8rem', { lineHeight: '1' }],
       },
       colors: {
+        'primary': {
+          DEFAULT: 'rgb(var(--color-primary))',
+          '50': 'rgb(var(--color-primary-50))',
+          '100': 'rgb(var(--color-primary-100))',
+          '200': 'rgb(var(--color-primary-200))',
+          '300': 'rgb(var(--color-primary-300))',
+          '400': 'rgb(var(--color-primary-400))',
+          '500': 'rgb(var(--color-primary-500))',
+          '600': 'rgb(var(--color-primary-600))',
+          '700': 'rgb(var(--color-primary-700))',
+          '800': 'rgb(var(--color-primary-800))',
+          '900': 'rgb(var(--color-primary-900))',
+        },
         // Dark blue-teal color scheme from screenshots
         'deepblue': {
           DEFAULT: '#0A2533',
@@ -125,6 +138,28 @@ module.exports = {
       backgroundImage: {
         'gradient-dark': 'linear-gradient(to bottom, rgba(10, 37, 51, 0.9), rgba(10, 37, 51, 0.7))',
         'gradient-light': 'linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7))',
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.8s ease-out forwards',
+        'ripple': 'ripple 0.8s ease-out forwards',
+        'fork': 'fork 0.8s ease-out forwards',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        ripple: {
+          '0%': { transform: 'scale(0.8)', opacity: '0.5' },
+          '100%': { transform: 'scale(2.4)', opacity: '0' },
+        },
+        fork: {
+          '0%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(20deg)' },
+          '50%': { transform: 'rotate(-15deg)' },
+          '75%': { transform: 'rotate(10deg)' },
+          '100%': { transform: 'rotate(0deg)' },
+        },
       },
     },
   },

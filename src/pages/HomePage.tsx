@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import SectionTitle from '../components/SectionTitle';
@@ -7,6 +7,38 @@ import HeroBackground from '../components/HeroBackground';
 
 const HomePage: React.FC = () => {
   const { t } = useTranslation();
+  const sectionsRef = useRef<(HTMLElement | null)[]>([]);
+
+  // Set up intersection observer for animations
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          entry.target.querySelectorAll('.fade-in').forEach((el, index) => {
+            (el as HTMLElement).style.animationDelay = `${index * 200}ms`;
+            el.classList.add('animate');
+          });
+        }
+      });
+    }, observerOptions);
+
+    sectionsRef.current.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      sectionsRef.current.forEach((section) => {
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, []);
 
   // Key features to highlight on the homepage
   const features = [
@@ -62,71 +94,84 @@ const HomePage: React.FC = () => {
   return (
     <main className="bg-light dark:bg-deepblue-900 transition-colors duration-300">
       {/* Hero Section with full background image */}
-      <HeroBackground 
-        imageSrc="/images/hero/forkit_hero_left.jpg"
-        position="left"
-        overlayOpacity="medium"
+      <section 
+        ref={(el) => sectionsRef.current[0] = el}
+        className="snap-section"
       >
-        <div className="max-w-3xl">
-          <h1 className="homepage-hero-title mb-6">
-            {t('hero.title')}
-          </h1>
-          <p className="homepage-hero-subtitle">
-            {t('hero.subtitle')}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link 
-              to="/warteliste" 
-              className="bg-ocean-600 hover:bg-ocean-700 text-white px-6 py-3 rounded-sm font-lexend font-medium text-base shadow-md transition-all"
-            >
-              {t('hero.cta')}
-            </Link>
-            <Link 
-              to="/manifest" 
-              className="bg-white/10 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-sm font-lexend font-medium text-base hover:bg-white/20 transition-all"
-            >
-              {t('manifest.title')}
-            </Link>
+        <HeroBackground 
+          imageSrc="/images/hero/forkit_hero_left.jpg"
+          position="left"
+          overlayOpacity="medium"
+        >
+          <div className="max-w-3xl">
+            <h1 className="homepage-hero-title mb-6 fade-in">
+              {t('hero.title')}
+            </h1>
+            <p className="homepage-hero-subtitle fade-in">
+              {t('hero.subtitle')}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4 fade-in">
+              <Link 
+                to="/warteliste" 
+                className="bg-ocean-600 hover:bg-ocean-700 text-white px-6 py-3 rounded-sm font-lexend font-medium text-base shadow-md transition-all"
+              >
+                {t('hero.cta')}
+              </Link>
+              <Link 
+                to="/manifest" 
+                className="bg-white/10 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-sm font-lexend font-medium text-base hover:bg-white/20 transition-all"
+              >
+                {t('manifest.title')}
+              </Link>
+            </div>
           </div>
-        </div>
-      </HeroBackground>
+        </HeroBackground>
+      </section>
 
       {/* Manifest Intro Section with background image */}
-      <HeroBackground 
-        imageSrc="/images/hero/manifest-hero_top.jpg"
-        position="center"
-        overlayOpacity="medium"
+      <section 
+        ref={(el) => sectionsRef.current[1] = el}
+        className="snap-section"
       >
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="homepage-hero-title mb-6">
-            Manifest 1.1
-          </h2>
-          <div className="space-y-6 text-white text-xl font-light drop-shadow-md">
-            <p>
-              Wir sehen, was passiert: Die digitale Welt gehört nicht mehr den Menschen, die sie nutzen – sondern den Plattformen, die sie kontrollieren.
-            </p>
-            <p>
-              Sichtbarkeit ist zur Ware geworden – und die größten Plattformen halten das Monopol.
-            </p>
-            <p>
-              Wir glauben, dass es anders geht.
-            </p>
+        <HeroBackground 
+          imageSrc="/images/hero/manifest-hero_top.jpg"
+          position="center"
+          overlayOpacity="medium"
+        >
+          <div className="max-w-3xl mx-auto text-center pt-24 md:pt-32">
+            <h2 className="homepage-hero-title mb-8 fade-in">
+              Manifest 1.1
+            </h2>
+            <div className="space-y-6 text-white text-xl font-light drop-shadow-lg">
+              <p className="fade-in">
+                Wir sehen, was passiert: Die digitale Welt gehört nicht mehr den Menschen, die sie nutzen – sondern den Plattformen, die sie kontrollieren.
+              </p>
+              <p className="fade-in">
+                Sichtbarkeit ist zur Ware geworden – und die größten Plattformen halten das Monopol.
+              </p>
+              <p className="fade-in">
+                Wir glauben, dass es anders geht.
+              </p>
+            </div>
+            <div className="mt-10 fade-in">
+              <Link 
+                to="/manifest" 
+                className="inline-flex items-center font-lexend font-medium text-white text-lg hover:text-white/80 transition-colors"
+              >
+                Vollständiges Manifest lesen <span className="ml-2">→</span>
+              </Link>
+            </div>
           </div>
-          <div className="mt-10">
-            <Link 
-              to="/manifest" 
-              className="inline-flex items-center font-lexend font-medium text-white text-lg hover:text-white/80 transition-colors"
-            >
-              Vollständiges Manifest lesen <span className="ml-2">→</span>
-            </Link>
-          </div>
-        </div>
-      </HeroBackground>
+        </HeroBackground>
+      </section>
 
       {/* Features/CTA Boxes - Grid layout with individual cards */}
-      <section className="py-16 bg-slate-50 dark:bg-deepblue-900">
+      <section 
+        ref={(el) => sectionsRef.current[2] = el}
+        className="snap-section bg-slate-50 dark:bg-deepblue-900 py-16 flex items-center"
+      >
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-12">
+          <div className="mb-12 fade-in">
             <h2 className="headline-section">
               Unsere Lösungen
             </h2>
@@ -138,7 +183,7 @@ const HomePage: React.FC = () => {
             {features.map((feature, index) => (
               <div 
                 key={index}
-                className="bg-white dark:bg-deepblue-800 p-6 rounded-sm shadow-sm border border-gray-200 dark:border-deepblue-700 hover:shadow-md transition-all"
+                className="bg-white dark:bg-deepblue-800 p-6 rounded-sm shadow-sm border border-gray-200 dark:border-deepblue-700 hover:shadow-md transition-all fade-in"
               >
                 <div className="mb-4">
                   {feature.icon}
@@ -162,31 +207,39 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Image Feature - Solution section with background image */}
-      <HeroBackground 
-        imageSrc="/images/solution/solution_left.jpeg"
-        position="left"
-        overlayOpacity="medium"
+      <section 
+        ref={(el) => sectionsRef.current[3] = el}
+        className="snap-section"
       >
-        <div className="max-w-3xl">
-          <h2 className="homepage-hero-title mb-6">
-            Digitale Lösungen direkt für kleine Unternehmen
-          </h2>
-          <p className="homepage-hero-subtitle mb-8">
-            Wir entwickeln digitale Lösungen, die speziell auf die Bedürfnisse kleiner und mittlerer Unternehmen zugeschnitten sind. Keine unnötigen Funktionen, keine versteckten Kosten.
-          </p>
-          <Link 
-            to="/loesungen" 
-            className="inline-flex items-center font-lexend text-white text-lg hover:text-white/80 transition-colors"
-          >
-            Alle Lösungen entdecken <span className="ml-2">→</span>
-          </Link>
-        </div>
-      </HeroBackground>
+        <HeroBackground 
+          imageSrc="/images/solution/solution_left.jpeg"
+          position="left"
+          overlayOpacity="medium"
+        >
+          <div className="max-w-3xl">
+            <h2 className="homepage-hero-title mb-6 fade-in">
+              Digitale Lösungen direkt für kleine Unternehmen
+            </h2>
+            <p className="homepage-hero-subtitle mb-8 fade-in">
+              Wir entwickeln digitale Lösungen, die speziell auf die Bedürfnisse kleiner und mittlerer Unternehmen zugeschnitten sind. Keine unnötigen Funktionen, keine versteckten Kosten.
+            </p>
+            <Link 
+              to="/loesungen" 
+              className="inline-flex items-center font-lexend text-white text-lg hover:text-white/80 transition-colors fade-in"
+            >
+              Alle Lösungen entdecken <span className="ml-2">→</span>
+            </Link>
+          </div>
+        </HeroBackground>
+      </section>
 
       {/* Target Groups Section */}
-      <section className="py-16 bg-gray-50 dark:bg-deepblue-900">
+      <section 
+        ref={(el) => sectionsRef.current[4] = el}
+        className="snap-section bg-gray-50 dark:bg-deepblue-900 py-16 flex items-center"
+      >
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-start mb-12">
+          <div className="flex flex-col md:flex-row justify-between items-start mb-12 fade-in">
             <div>
               <h2 className="headline-section">
                 {t('targetGroups.title')}
@@ -202,7 +255,7 @@ const HomePage: React.FC = () => {
               <Link
                 key={index}
                 to={group.path}
-                className="group overflow-hidden rounded-sm border border-gray-200 dark:border-deepblue-700 transition-all"
+                className="group overflow-hidden rounded-sm border border-gray-200 dark:border-deepblue-700 transition-all fade-in"
               >
                 <ImageContainer
                   src={group.image}
@@ -226,7 +279,7 @@ const HomePage: React.FC = () => {
             ))}
           </div>
           
-          <div className="mt-6 flex flex-wrap gap-3 justify-center">
+          <div className="mt-6 flex flex-wrap gap-3 justify-center fade-in">
             {targetAudiences.map((audience, index) => (
               <Link
                 key={index}
@@ -241,9 +294,12 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Customer Stories Section */}
-      <section className="py-16 bg-white dark:bg-deepblue-800">
+      <section 
+        ref={(el) => sectionsRef.current[5] = el}
+        className="snap-section bg-white dark:bg-deepblue-800 py-16 flex items-center"
+      >
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-12">
+          <div className="mb-12 fade-in">
             <h2 className="headline-section">
               Erfolgsgeschichten
             </h2>
@@ -253,7 +309,7 @@ const HomePage: React.FC = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-deepblue-800 rounded-sm shadow-sm border border-gray-200 dark:border-deepblue-700 overflow-hidden">
+            <div className="bg-white dark:bg-deepblue-800 rounded-sm shadow-sm border border-gray-200 dark:border-deepblue-700 overflow-hidden fade-in">
               <div className="h-48">
                 <img 
                   src="/images/content/customer-story_hero_left.jpg" 
@@ -277,7 +333,7 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             
-            <div className="bg-white dark:bg-deepblue-800 rounded-sm shadow-sm border border-gray-200 dark:border-deepblue-700 overflow-hidden">
+            <div className="bg-white dark:bg-deepblue-800 rounded-sm shadow-sm border border-gray-200 dark:border-deepblue-700 overflow-hidden fade-in">
               <div className="h-48">
                 <img 
                   src="/images/content/customer-story3_hero_left.jpg" 
@@ -301,7 +357,7 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             
-            <div className="bg-white dark:bg-deepblue-800 rounded-sm shadow-sm border border-gray-200 dark:border-deepblue-700 overflow-hidden">
+            <div className="bg-white dark:bg-deepblue-800 rounded-sm shadow-sm border border-gray-200 dark:border-deepblue-700 overflow-hidden fade-in">
               <div className="h-48">
                 <img 
                   src="/images/content/restaurant_right.jpeg" 
@@ -329,34 +385,57 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Call to Action Section with background image */}
-      <HeroBackground 
-        imageSrc="/images/content/forkit_restaurant_tablet.jpg"
-        position="left"
-        overlayOpacity="medium"
+      <section 
+        ref={(el) => sectionsRef.current[6] = el}
+        className="snap-section-last"
       >
-        <div className="max-w-3xl">
-          <h2 className="homepage-hero-title mb-6">
-            Werde Teil der Bewegung
-          </h2>
-          <p className="homepage-hero-subtitle mb-8">
-            Wir wollen digitale Unabhängigkeit zurückgewinnen - für dich und dein Geschäft.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Link 
-              to="/warteliste" 
-              className="bg-ocean-600 hover:bg-ocean-700 text-white px-6 py-3 rounded-sm font-lexend font-medium text-base shadow-md transition-all"
-            >
-              {t('waitlist.title')}
-            </Link>
-            <Link 
-              to="/deine-story" 
-              className="bg-white/10 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-sm font-lexend font-medium text-base hover:bg-white/20 transition-all"
-            >
-              {t('story.title')}
-            </Link>
+        <HeroBackground 
+          imageSrc="/images/content/forkit_restaurant_tablet.jpg"
+          position="left"
+          overlayOpacity="medium"
+        >
+          <div className="max-w-3xl">
+            <h2 className="homepage-hero-title mb-6 fade-in">
+              Werde Teil der Bewegung
+            </h2>
+            <p className="homepage-hero-subtitle mb-8 fade-in">
+              Wir wollen digitale Unabhängigkeit zurückgewinnen - für dich und dein Geschäft.
+            </p>
+            <div className="flex flex-wrap gap-4 fade-in">
+              <Link 
+                to="/warteliste" 
+                className="bg-ocean-600 hover:bg-ocean-700 text-white px-6 py-3 rounded-sm font-lexend font-medium text-base shadow-md transition-all"
+              >
+                {t('waitlist.title')}
+              </Link>
+              <Link 
+                to="/deine-story" 
+                className="bg-white/10 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-sm font-lexend font-medium text-base hover:bg-white/20 transition-all"
+              >
+                {t('story.title')}
+              </Link>
+            </div>
           </div>
+        </HeroBackground>
+      </section>
+
+      {/* Navigation dots */}
+      <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 hidden md:block">
+        <div className="flex flex-col space-y-3">
+          {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+            <button
+              key={i}
+              onClick={() => {
+                if (sectionsRef.current[i]) {
+                  sectionsRef.current[i]?.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="w-3 h-3 rounded-full bg-gray-300 hover:bg-primary transition-all duration-300"
+              aria-label={`Scroll to section ${i + 1}`}
+            />
+          ))}
         </div>
-      </HeroBackground>
+      </div>
     </main>
   );
 };

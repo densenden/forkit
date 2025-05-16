@@ -6,7 +6,6 @@ import './App.css';
 // Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import LanguageSwitcher from './components/LanguageSwitcher';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -23,6 +22,10 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import SeniorsPage from './pages/SeniorsPage';
 import CustomerStoryPage from './pages/CustomerStoryPage';
+import ImpressumPage from './pages/ImpressumPage';
+import DatenschutzPage from './pages/DatenschutzPage';
+import ForkButtonDemoPage from './pages/ForkButtonDemoPage';
+import ProjectPage from './pages/ProjectPage';
 
 function App() {
   const [currentLang, setCurrentLang] = useState('de'); // Set default to German
@@ -56,20 +59,39 @@ function App() {
 
   // Define routes with dynamic names based on current language
   const getRoutes = () => [
-    { path: '/', name: t('nav.home'), element: <HomePage /> },
-    { path: '/manifest', name: t('nav.manifest'), element: <ManifestPage /> },
-    { path: '/name-voting', name: t('nav.voting'), element: <VotingPage /> },
-    { path: '/fuer-wen', name: t('nav.targetGroups'), element: <TargetGroupsPage /> },
-    { path: '/loesungen', name: t('nav.solutions'), element: <SolutionsPage /> },
-    { path: '/partner-werden', name: t('nav.partners'), element: <PartnerPage /> },
-    { path: '/deine-story', name: t('nav.story'), element: <StoryPage /> },
+    // Start (Home)
+    { path: '/', name: t('nav.home'), element: <HomePage />, navSection: 'start' },
+    
+    // Von Uns (About Us)
+    { path: '/manifest', name: t('nav.manifest'), element: <ManifestPage />, navSection: 'von-uns' },
+    { path: '/ueber-uns', name: t('nav.about'), element: <AboutPage />, navSection: 'von-uns' },
+    
+    // Für Euch (For You)
+    { path: '/loesungen', name: t('nav.solutions'), element: <SolutionsPage />, navSection: 'fuer-euch' },
+    { path: '/fuer-wen', name: t('nav.targetGroups'), element: <TargetGroupsPage />, navSection: 'fuer-euch' },
+    { path: '/senioren', name: 'Für Senioren', element: <SeniorsPage />, navSection: 'fuer-euch' },
+    
+    // Ressourcen (Resources)
+    { path: '/partner-werden', name: t('nav.partners'), element: <PartnerPage />, navSection: 'ressourcen' },
+    { path: '/deine-story', name: t('nav.story'), element: <StoryPage />, navSection: 'ressourcen' },
     { path: '/deine-story/restaurant-meier', name: 'Story: Restaurant Meier', element: <CustomerStoryPage />, showInNav: false },
-    { path: '/ideen', name: t('nav.ideas'), element: <IdeasPage /> },
-    { path: '/warteliste', name: t('nav.waitlist'), element: <WaitlistPage /> },
-    { path: '/blog', name: t('nav.blog'), element: <BlogPage /> },
-    { path: '/ueber-uns', name: t('nav.about'), element: <AboutPage /> },
-    { path: '/kontakt', name: t('nav.contact'), element: <ContactPage /> },
-    { path: '/senioren', name: 'Für Senioren', element: <SeniorsPage /> }
+    { path: '/ideen', name: t('nav.ideas'), element: <IdeasPage />, navSection: 'ressourcen' },
+    { path: '/blog', name: t('nav.blog'), element: <BlogPage />, navSection: 'ressourcen' },
+    { path: '/name-voting', name: t('nav.voting'), element: <VotingPage />, navSection: 'ressourcen' },
+    
+    // Action items (separate section)
+    { path: '/warteliste', name: t('nav.waitlist'), element: <WaitlistPage />, navSection: 'actions' },
+    { path: '/kontakt', name: t('nav.contact'), element: <ContactPage />, navSection: 'actions' },
+    
+    // Legal pages
+    { path: '/impressum', name: 'Impressum', element: <ImpressumPage />, showInNav: false },
+    { path: '/datenschutz', name: 'Datenschutz', element: <DatenschutzPage />, showInNav: false },
+    
+    // Component demos
+    { path: '/components/fork-button', name: 'Fork Button', element: <ForkButtonDemoPage />, showInNav: false },
+    
+    // Project pages
+    { path: '/projekte/restaurant-template', name: 'Restaurant Template', element: <ProjectPage />, showInNav: false }
   ];
 
   const routes = getRoutes();
@@ -78,8 +100,7 @@ function App() {
   return (
     <Router>
       <div className="App font-lexend">
-        <Navbar currentLang={currentLang} routes={navRoutes} />
-        <LanguageSwitcher currentLang={currentLang} setCurrentLang={changeLanguage} />
+        <Navbar currentLang={currentLang} routes={navRoutes} setCurrentLang={changeLanguage} />
         <Routes>
           {routes.map((route) => (
             <Route key={route.path} path={route.path} element={route.element} />

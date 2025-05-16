@@ -20,6 +20,9 @@ const en = {
       resources: 'Resources',
       participate: 'Participate'
     },
+    actions: {
+      fork: 'Fork'
+    },
     hero: {
       title: 'You fight for your business every day. But digitally, you\'re trapped.',
       subtitle: 'We\'re giving you back what belongs to you: your visibility, your tools, your customers.',
@@ -278,6 +281,9 @@ const de = {
       contact: 'Kontakt',
       resources: 'Ressourcen',
       participate: 'Mitmachen'
+    },
+    actions: {
+      fork: 'Fork'
     },
     hero: {
       title: 'Du kämpfst jeden Tag für dein Geschäft. Aber digital bist du gefangen.',

@@ -4,6 +4,27 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Define primary colors based on the ocean palette */
+  --color-primary: 22, 107, 138;      /* Ocean blue */
+  --color-primary-50: 232, 240, 243;
+  --color-primary-100: 209, 225, 232;
+  --color-primary-200: 163, 196, 208;
+  --color-primary-300: 118, 166, 185;
+  --color-primary-400: 72, 137, 161;
+  --color-primary-500: 27, 108, 138;
+  --color-primary-600: 22, 75, 96;
+  --color-primary-700: 18, 61, 77;
+  --color-primary-800: 13, 46, 58;
+  --color-primary-900: 9, 31, 39;
+  --color-primary-950: 5, 26, 33;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
 body {
   margin: 0;
   font-family: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,7 +32,63 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply bg-white dark:bg-deepblue-900 text-gray-800 dark:text-gray-100;
+  @apply bg-white dark:bg-deepblue-950 text-gray-800 dark:text-gray-100;
+  overflow-x: hidden;
+}
+
+/* Full height sections with snap */
+.snap-section {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  @apply flex flex-col justify-center;
+}
+
+/* Last section should allow scrolling to the footer */
+.snap-section-last {
+  height: auto;
+  min-height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  padding-bottom: 100px; /* Add space for footer */
+  @apply flex flex-col justify-center;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  opacity: 0;
+}
+
+.fade-in.animate {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Fade in delay utilities */
+.delay-100 { animation-delay: 100ms !important; }
+.delay-200 { animation-delay: 200ms !important; }
+.delay-300 { animation-delay: 300ms !important; }
+.delay-400 { animation-delay: 400ms !important; }
+.delay-500 { animation-delay: 500ms !important; }
+.delay-600 { animation-delay: 600ms !important; }
+.delay-700 { animation-delay: 700ms !important; }
+.delay-800 { animation-delay: 800ms !important; }
+.delay-900 { animation-delay: 900ms !important; }
+.delay-1000 { animation-delay: 1000ms !important; }
+
+/* Animation for hero sections */
+.hero-background {
+  position: relative;
+  overflow: hidden;
+}
+
+.manifest-item {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
 code {
@@ -148,16 +225,16 @@ code {
   
   /* Cards and boxes with lower contrast in dark mode */
   .card {
-    @apply bg-white dark:bg-deepblue-800 rounded border border-gray-100 dark:border-deepblue-700 shadow-sm;
+    @apply bg-white dark:bg-deepblue-900 rounded border border-gray-100 dark:border-deepblue-800 shadow-sm;
   }
   
   .box {
-    @apply bg-gray-50 dark:bg-deepblue-800 rounded p-4 border border-gray-100 dark:border-deepblue-700;
+    @apply bg-gray-50 dark:bg-deepblue-900 rounded p-4 border border-gray-100 dark:border-deepblue-800;
   }
 
   /* Form elements in new color scheme */
   .form-input {
-    @apply bg-white dark:bg-deepblue-800 border border-gray-200 dark:border-deepblue-700
+    @apply bg-white dark:bg-deepblue-900 border border-gray-200 dark:border-deepblue-800
     rounded-sm px-4 py-2 w-full focus:ring-1 focus:ring-ocean-500 focus:border-ocean-500 
     dark:focus:ring-ocean-400 dark:focus:border-ocean-400;
   }
@@ -219,7 +296,7 @@ code {
 /* Dark mode adjustments */
 .dark {
   --tw-bg-opacity: 1;
-  background-color: rgb(10 37 51 / var(--tw-bg-opacity));
+  background-color: rgb(5 26 33 / var(--tw-bg-opacity));
   color: rgb(243 244 246 / 1);
 }
 
@@ -227,16 +304,16 @@ code {
 .dark .card,
 .dark .box-shadow,
 .dark .bg-white {
-  @apply bg-deepblue-800 border-deepblue-700;
+  @apply bg-deepblue-900 border-deepblue-800;
 }
 
 /* Override any white backgrounds in dark mode */
 .dark .bg-white {
-  @apply bg-deepblue-800 !important;
+  @apply bg-deepblue-900 !important;
 }
 
 .dark .border-white {
-  @apply border-deepblue-700 !important;
+  @apply border-deepblue-800 !important;
 }
 
 /* Image sections should be large and impactful */
@@ -267,7 +344,7 @@ code {
 
 /* Contact form container styling */
 .contact-form-container {
-  @apply bg-white dark:bg-deepblue-800 rounded-lg p-8 shadow-lg border border-gray-100 dark:border-deepblue-700;
+  @apply bg-white dark:bg-deepblue-900 rounded-lg p-8 shadow-lg border border-gray-100 dark:border-deepblue-800;
 }
 
 /* FAQ container styling */
@@ -277,13 +354,46 @@ code {
 
 /* Target group card styling */
 .target-group-card {
-  @apply bg-white p-8 rounded-lg;
+  @apply bg-white dark:bg-deepblue-900 p-8 rounded-lg;
 }
 
 .target-group-card h3 {
-  @apply text-gray-900 font-semibold;
+  @apply text-gray-900 dark:text-gray-100 font-semibold;
 }
 
 .target-group-card p {
-  @apply text-gray-800;
+  @apply text-gray-800 dark:text-gray-200;
+}
+
+/* Image with text overlay styling - static regardless of dark/light mode */
+.image-with-text-overlay {
+  @apply relative overflow-hidden rounded-sm transition-all duration-300;
+}
+
+.image-with-text-overlay img {
+  @apply w-full h-full object-cover transition-transform duration-500;
+}
+
+.image-with-text-overlay:hover img {
+  @apply scale-110;
+}
+
+.image-with-text-overlay .overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black via-black to-transparent opacity-70;
+}
+
+.image-with-text-overlay:hover .overlay {
+  @apply opacity-90;
+}
+
+.image-with-text-overlay .text-content {
+  @apply absolute bottom-0 left-0 right-0 p-6 text-white;
+}
+
+.image-with-text-overlay h3 {
+  @apply text-white font-semibold text-xl mb-1;
+}
+
+.image-with-text-overlay p {
+  @apply text-white text-sm opacity-90;
 }

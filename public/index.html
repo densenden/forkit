@@ -2,12 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- SVG favicon with light/dark mode support -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.svg" type="image/svg+xml" />
+    <!-- Fallback favicons for browsers that don't support SVG -->
+    <link rel="alternate icon" href="%PUBLIC_URL%/images/favicon/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
+    <link rel="alternate icon" href="%PUBLIC_URL%/images/favicon/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" sizes="any" /> <!-- Fallback -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#2D6E7E" />
+    <meta name="theme-color" content="#2D6E7E" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#092533" media="(prefers-color-scheme: dark)" />
     <meta
       name="description"
-      content="Forkit - Digital independence for small businesses"
+      content="Fork:it - Digital independence for small businesses"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!-- Google Fonts -->
@@ -28,7 +34,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Forkit - Digital Independence</title>
+    <title>Fork:it - Digital Independence</title>
     <!-- Preload theme to prevent flash -->
     <script>
       // Immediately set the theme to avoid flash of wrong theme
