@@ -6,7 +6,7 @@ const ImpressumPage: React.FC = () => {
   const currentLang = i18n.language;
 
   useEffect(() => {
-    document.title = `${currentLang === 'de' ? 'Impressum' : 'Legal Notice'} | Forkit`;
+    document.title = `${currentLang === 'de' ? 'Impressum' : 'Legal Notice'} | Fork:it`;
   }, [currentLang]);
 
   return (

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ThemeToggle from './ThemeToggle';
+import { ReactComponent as ForkitDarkWordmark } from '../assets/logos/forkit_dark_wordmark.svg';
 
 interface RouteType {
   path: string;
@@ -20,18 +21,18 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ currentLang, routes, setCurrentLang }) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      // Keep the code but don't set the unused variable
+      // if (window.scrollY > 10) {
+      //   setScrolled(true);
+      // } else {
+      //   setScrolled(false);
+      // }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -114,15 +115,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes, setCurrentLang }) 
   };
 
   return (
-    <nav className={`fixed w-full z-40 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-white dark:bg-deepblue-950 shadow-md py-1' 
-        : 'bg-transparent dark:bg-deepblue-950/80 backdrop-blur-sm py-2'
-    }`}>
+    <nav className={`fixed w-full z-40 transition-all duration-300 bg-deepblue-950 py-2`}>
       <div className="container mx-auto px-3 md:px-4">
         <div className="flex justify-between items-center">
-          <Link to="/" className="text-xl font-lexend font-bold text-primary tracking-tight">
-            <span className="text-dark dark:text-white">Fork</span>:it
+          <Link to="/" className="flex items-center" style={{ height: 24 }}>
+            <ForkitDarkWordmark style={{ height: 24, width: 'auto', display: 'block' }} />
           </Link>
 
           {/* Desktop Navigation */}
@@ -133,8 +130,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes, setCurrentLang }) 
                 <button 
                   className={`font-lexend text-xs font-medium px-2 py-2 rounded-sm flex items-center ${
                     openDropdown === key || isActiveSection(key) 
-                      ? 'text-primary dark:text-ocean-300 bg-primary/5 dark:bg-ocean-900/30' 
-                      : 'text-gray-700 dark:text-gray-200 hover:bg-primary/5 dark:hover:bg-ocean-900/30 hover:text-primary dark:hover:text-ocean-300'
+                      ? 'text-ocean-300 bg-ocean-900/30' 
+                      : 'text-gray-200 hover:bg-ocean-900/30 hover:text-ocean-300'
                   }`}
                   onClick={() => toggleDropdown(key)}
                 >
@@ -146,15 +143,15 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes, setCurrentLang }) 
                 
                 {/* Dropdown menu */}
                 {openDropdown === key && (
-                  <div className="absolute top-full left-0 mt-1 bg-white dark:bg-deepblue-900 rounded-sm shadow-lg py-1 min-w-[180px] z-50">
+                  <div className="absolute top-full left-0 mt-1 bg-deepblue-900 rounded-sm shadow-lg py-1 min-w-[180px] z-50">
                     {group.items.map((route) => (
                       <Link
                         key={route.path}
                         to={route.path}
-                        className={`block px-4 py-2 text-xs hover:bg-primary/5 dark:hover:bg-ocean-900/30 ${
+                        className={`block px-4 py-2 text-xs hover:bg-ocean-900/30 ${
                           location.pathname === route.path
-                            ? 'text-primary dark:text-ocean-300 font-medium bg-primary/5 dark:bg-ocean-900/20'
-                            : 'text-gray-700 dark:text-gray-300'
+                            ? 'text-ocean-300 font-medium bg-ocean-900/20'
+                            : 'text-gray-300'
                         }`}
                         onClick={closeMenu}
                       >
@@ -178,7 +175,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes, setCurrentLang }) 
                     ? 'bg-primary text-white' 
                     : route.path === '/warteliste'
                       ? 'bg-primary text-white hover:bg-primary-600'
-                      : 'bg-white dark:bg-deepblue-900 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:border-primary hover:text-primary dark:hover:border-ocean-400 dark:hover:text-ocean-300'
+                      : 'bg-deepblue-900 border border-gray-600 text-gray-200 hover:border-ocean-400 hover:text-ocean-300'
                 }`}
               >
                 {route.name}
@@ -190,7 +187,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes, setCurrentLang }) 
               <ThemeToggle />
               <button 
                 onClick={toggleLanguage}
-                className="px-2 py-1 bg-white dark:bg-deepblue-900 text-gray-700 dark:text-gray-200 rounded-sm border border-gray-300 dark:border-gray-600 font-lexend font-medium text-xs shadow-sm hover:border-primary hover:text-primary dark:hover:border-ocean-400 dark:hover:text-ocean-300 transition-all"
+                className="px-2 py-1 bg-deepblue-900 text-gray-200 rounded-sm border border-gray-600 font-lexend font-medium text-xs shadow-sm hover:border-ocean-400 hover:text-ocean-300 transition-all"
               >
                 {currentLang === 'de' ? 'EN' : 'DE'}
               </button>
@@ -202,13 +199,13 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes, setCurrentLang }) 
             <ThemeToggle />
             <button 
               onClick={toggleLanguage}
-              className="px-2 py-1 bg-white dark:bg-deepblue-900 text-gray-700 dark:text-gray-200 rounded-sm border border-gray-300 dark:border-gray-600 font-lexend font-medium text-xs shadow-sm hover:border-primary hover:text-primary dark:hover:border-ocean-400 dark:hover:text-ocean-300 transition-all"
+              className="px-2 py-1 bg-deepblue-900 text-gray-200 rounded-sm border border-gray-600 font-lexend font-medium text-xs shadow-sm hover:border-ocean-400 hover:text-ocean-300 transition-all"
             >
               {currentLang === 'de' ? 'EN' : 'DE'}
             </button>
             <button
               onClick={toggleMenu}
-              className="text-gray-700 dark:text-white focus:outline-none ml-2"
+              className="text-white focus:outline-none ml-2"
               aria-label="Toggle menu"
             >
               {isOpen ? (
@@ -227,7 +224,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes, setCurrentLang }) 
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden absolute top-full left-0 right-0 bg-white dark:bg-deepblue-900 border-b border-gray-200 dark:border-deepblue-800 transition-all duration-300 overflow-hidden ${
+        className={`md:hidden absolute top-full left-0 right-0 bg-deepblue-900 border-b border-deepblue-800 transition-all duration-300 overflow-hidden ${
           isOpen ? 'max-h-[80vh] opacity-100 shadow-md overflow-y-auto' : 'max-h-0 opacity-0'
         }`}
       >
@@ -235,12 +232,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes, setCurrentLang }) 
           {/* Mobile accordion menu */}
           <div className="flex flex-col space-y-1">
             {Object.entries(menuGroups).filter(([key]) => key !== 'actions').map(([key, group]) => (
-              <div key={key} className="border-b border-gray-100 dark:border-deepblue-800 pb-1">
+              <div key={key} className="border-b border-deepblue-800 pb-1">
                 <button 
                   className={`w-full text-left font-lexend py-2 flex justify-between items-center ${
                     openDropdown === `mobile-${key}` || isActiveSection(key) 
-                      ? 'text-primary dark:text-ocean-300 font-medium' 
-                      : 'text-gray-700 dark:text-gray-200'
+                      ? 'text-ocean-300 font-medium' 
+                      : 'text-gray-200'
                   }`}
                   onClick={() => toggleDropdown(`mobile-${key}`)}
                 >
@@ -260,8 +257,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes, setCurrentLang }) 
                       to={route.path}
                       className={`block pl-4 py-2 text-sm ${
                         location.pathname === route.path
-                          ? 'text-primary dark:text-ocean-300 bg-primary/5 dark:bg-ocean-900/20'
-                          : 'text-gray-600 dark:text-gray-300 hover:bg-primary/5 dark:hover:bg-ocean-900/30'
+                          ? 'text-ocean-300 bg-ocean-900/20'
+                          : 'text-gray-300 hover:bg-ocean-900/30'
                       }`}
                       onClick={closeMenu}
                     >
@@ -283,7 +280,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, routes, setCurrentLang }) 
                       ? 'bg-primary text-white'
                       : route.path === '/warteliste' 
                         ? 'bg-primary text-white hover:bg-primary-600' 
-                        : 'bg-white dark:bg-deepblue-900 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200'
+                        : 'bg-deepblue-900 border border-gray-600 text-gray-200'
                   }`}
                   onClick={closeMenu}
                 >

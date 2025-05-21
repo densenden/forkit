@@ -6,47 +6,57 @@ const ManifestPage: React.FC = () => {
   const { t } = useTranslation();
   const [viewMode, setViewMode] = useState<'verse' | 'prose'>('verse');
 
-  // Verse-style manifest (numbered points)
+  // Verse-style manifest (numbered points) with the updated content
   const verseManifest = [
     {
       number: 1,
-      text: "Wir sehen, was passiert. Die digitale Welt gehört nicht mehr den Menschen, die sie nutzen. Sie gehört den Plattformen, die sie kontrollieren. Jede Buchung, jede Sichtbarkeit – sie kostet. Nicht nur Geld, sondern Unabhängigkeit."
+      headline: "Wir sehen, was passiert.",
+      text: "Die digitale Welt gehört nicht mehr den Menschen, die sie nutzen.\nSie gehört den Plattformen, die sie kontrollieren.\nJede Buchung, jede Sichtbarkeit – sie kostet.\nNicht nur Geld, sondern Unabhängigkeit."
     },
     {
       number: 2,
-      text: "Kleine Unternehmen, Selbstständige, Kreative – sie kämpfen täglich, um sichtbar zu bleiben. Aber die Systeme sind gegen sie gebaut. Wer nicht zahlt, wird nicht gesehen. Wer nicht mitmacht, bleibt draußen."
+      headline: "Kleine Unternehmen, Selbstständige, Kreative –",
+      text: "sie kämpfen täglich, um sichtbar zu bleiben.\nAber die Systeme sind gegen sie gebaut.\nWer nicht zahlt, wird nicht gesehen.\nWer nicht mitmacht, bleibt draußen."
     },
     {
       number: 3,
-      text: "Sichtbarkeit ist zur Ware geworden. Und die größten Plattformen halten das Monopol. Sie vermieten Reichweite, verlangen Gebühren, sammeln Daten – und kontrollieren den Zugang."
+      headline: "Sichtbarkeit ist zur Ware geworden.",
+      text: "Und die größten Plattformen halten das Monopol.\nSie vermieten Reichweite, verlangen Gebühren,\nsammeln Daten – und kontrollieren den Zugang."
     },
     {
       number: 4,
-      text: "Das Internet war einmal frei. Heute ist es ein Netz aus Verträgen, Abhängigkeiten und Algorithmen. Nicht jede Plattform ist schlecht. Aber die großen ziehen die Kontrolle an sich – und lassen die Kleinen zurück."
+      headline: "Das Internet war einmal frei.",
+      text: "Heute ist es ein Netz aus Verträgen, Abhängigkeiten und Algorithmen.\nNicht jede Plattform ist schlecht.\nAber die großen ziehen die Kontrolle an sich –\nund lassen die Kleinen zurück."
     },
     {
       number: 5,
-      text: "Wir sagen: Es geht anders. Wir glauben an ein anderes digitales Modell. Eines, das Menschen stärkt – nicht ihre Abhängigkeit."
+      headline: "Wir sagen: Es geht anders.",
+      text: "Wir glauben an ein anderes digitales Modell.\nEines, das Menschen stärkt –\nnicht ihre Abhängigkeit."
     },
     {
       number: 6,
-      text: "Wir bauen Werkzeuge, die dir gehören. Webseiten, die du selbst bedienen kannst. Shops ohne Prozentabgabe. Buchungen ohne monatliche Gebühren. Technik, die sichtbar macht – nicht versteckt."
+      headline: "Wir bauen Werkzeuge, die dir gehören.",
+      text: "Webseiten, die du selbst bedienen kannst.\nShops ohne Prozentabgabe.\nBuchungen ohne monatliche Gebühren.\nTechnik, die sichtbar macht – nicht versteckt."
     },
     {
       number: 7,
-      text: "Wir zeigen Alternativen, die existieren – aber kaum einer kennt. Weil sie Open Source sind. Weil sie Beratung brauchen. Weil sie keine Werbung schalten."
+      headline: "Wir zeigen Alternativen,",
+      text: "die existieren – aber kaum einer kennt.\nWeil sie Open Source sind.\nWeil sie Beratung brauchen.\nWeil sie keine Werbung schalten."
     },
     {
       number: 8,
-      text: "Wir sind Entwickler:innen, Kreative, Strateg:innen. Wir sind keine klassische Agentur. Wir sind eine Bewegung. Und wir arbeiten für dich – damit du für deine Kunden da sein kannst."
+      headline: "Wir sind Entwickler:innen, Kreative, Strateg:innen.",
+      text: "Wir sind keine klassische Agentur.\nWir sind eine Bewegung.\nUnd wir arbeiten für dich –\ndamit du für deine Kunden da sein kannst."
     },
     {
       number: 9,
-      text: "Du bekommst einen echten Menschen, keinen anonymen Support. Du bekommst Beratung und Umsetzung, keinen Lizenzvertrag."
+      headline: "Du bekommst einen echten Menschen,",
+      text: "keinen anonymen Support.\nDu bekommst Beratung und Umsetzung,\nkeinen Lizenzvertrag."
     },
     {
       number: 10,
-      text: "Es geht nicht um Technik. Es geht um Würde. Es geht um deine Arbeit. Deine Sichtbarkeit. Deine digitale Freiheit."
+      headline: "Es geht nicht um Technik.",
+      text: "Es geht um Würde.\nEs geht um deine Arbeit.\nDeine Sichtbarkeit.\nDeine digitale Freiheit."
     }
   ];
 
@@ -84,7 +94,7 @@ const ManifestPage: React.FC = () => {
         <div className="container mx-auto px-4 md:px-6">
           <SectionTitle 
             title={t('manifest.title')} 
-            subtitle="Version 1.1 – Unsere Haltung zur digitalen Selbstbestimmung"
+            subtitle="Unsere Haltung zur digitalen Selbstbestimmung"
             centered
           />
           <div className="flex justify-center mt-8 space-x-4">
@@ -127,25 +137,32 @@ const ManifestPage: React.FC = () => {
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mx-auto">
             {viewMode === 'verse' ? (
-              <div className="space-y-12">
+              <div className="space-y-8">
+                <h2 className="text-center font-lexend font-bold text-2xl mb-8">📜 Manifest Version 1.1</h2>
+                <p className="text-center mb-12">Versartige Form</p>
+                
                 {verseManifest.map((item) => (
-                  <div key={item.number} className="flex">
-                    <div className="mr-6">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center font-lexend font-bold text-primary">
-                        {item.number}
+                  <div key={item.number} className="mb-12">
+                    <div className="flex items-start">
+                      <div className="mr-4">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center font-lexend font-bold text-primary">
+                          {item.number}
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-lexend font-bold text-lg mb-2">{item.headline}</h3>
+                        {item.text.split('\n').map((line, idx) => (
+                          <p key={idx} className="text-gray-700 leading-relaxed">{line}</p>
+                        ))}
                       </div>
                     </div>
-                    <div className="flex-1">
-                      <p className="text-gray-700 text-lg leading-relaxed">
-                        {item.text}
-                      </p>
-                    </div>
+                    <div className="mt-6 border-t border-gray-200 pt-4 w-16">⸻</div>
                   </div>
                 ))}
                 
                 <div className="mt-12 pt-8 border-t border-gray-200">
-                  <div className="font-lexend font-bold text-2xl text-center text-dark">
-                    Willkommen bei FORKIT.
+                  <div className="font-lexend font-bold text-2xl flex items-center justify-center text-dark">
+                    <span className="mr-2">✊</span> Willkommen bei Fork:it.
                   </div>
                   <div className="font-lexend font-bold text-2xl text-center text-primary mt-2">
                     Das System gehört dir.
@@ -154,6 +171,9 @@ const ManifestPage: React.FC = () => {
               </div>
             ) : (
               <div className="prose prose-lg max-w-none">
+                <h2 className="text-center font-lexend font-bold text-2xl mb-8">📜 Manifest Version 1.1</h2>
+                <p className="text-center mb-12">Fließtext</p>
+                
                 {proseManifest.map((paragraph, index) => (
                   <p key={index} className="text-gray-700 mb-6 text-lg leading-relaxed">
                     {paragraph}
@@ -161,8 +181,8 @@ const ManifestPage: React.FC = () => {
                 ))}
                 
                 <div className="mt-12 pt-8 border-t border-gray-200">
-                  <div className="font-lexend font-bold text-2xl text-center text-dark">
-                    Willkommen bei FORKIT.
+                  <div className="font-lexend font-bold text-2xl flex items-center justify-center text-dark">
+                    <span className="mr-2">✊</span> Willkommen bei Fork:it.
                   </div>
                   <div className="font-lexend font-bold text-2xl text-center text-primary mt-2">
                     Das System gehört dir.

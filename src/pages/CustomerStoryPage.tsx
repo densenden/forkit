@@ -21,7 +21,7 @@ const CustomerStoryContent = () => (
     <h2 className="text-2xl font-lexend font-semibold mt-8 mb-4">Die Lösung</h2>
     
     <p className="mb-4">
-      Mit Forkit konnte Restaurant Meier eine eigene Website mit integriertem Bestellsystem aufbauen. Dank der einfachen Benutzeroberfläche kann die Familie das System selbst verwalten und aktualisieren.
+      Mit Fork:it konnte Restaurant Meier eine eigene Website mit integriertem Bestellsystem aufbauen. Dank der einfachen Benutzeroberfläche kann die Familie das System selbst verwalten und aktualisieren.
     </p>
     
     <p className="mb-4">

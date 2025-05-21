@@ -12,7 +12,7 @@ const VotingPage: React.FC = () => {
   // Name options with descriptions
   const nameOptions = [
     {
-      name: 'Forkit',
+      name: 'Fork:it',
       description: 'Ein Name, der auf das Forking im Code-Bereich anspielt – einen neuen Weg einschlagen, basierend auf etwas Bestehendem, aber mit eigener Kontrolle.',
       votes: 64,
     },

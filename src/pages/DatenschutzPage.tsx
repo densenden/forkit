@@ -6,7 +6,7 @@ const DatenschutzPage: React.FC = () => {
   const currentLang = i18n.language;
 
   useEffect(() => {
-    document.title = `${currentLang === 'de' ? 'Datenschutz' : 'Privacy Policy'} | Forkit`;
+    document.title = `${currentLang === 'de' ? 'Datenschutz' : 'Privacy Policy'} | Fork:it`;
   }, [currentLang]);
 
   return (

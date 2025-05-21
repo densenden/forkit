@@ -131,7 +131,7 @@ code {
 
   /* Default link */
   a {
-    @apply text-ocean-600 dark:text-ocean-300 hover:underline;
+    @apply text-ocean-600 dark:text-ocean-300;
   }
 }
 

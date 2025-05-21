@@ -174,7 +174,7 @@ npm run dev`}</pre>
           
           <div className="flex justify-between items-center mt-6">
             <a href="https://github.com/forkit/restaurant-template" className="text-ocean-600 dark:text-ocean-400 hover:underline">
-              View Documentation
+              View Documentation (Fork:it)
             </a>
             <ForkButton 
               onClick={handleFork} 

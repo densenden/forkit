@@ -9,7 +9,7 @@ const BlogPage: React.FC = () => {
   const currentLang = i18n.language;
   
   useEffect(() => {
-    document.title = `${currentLang === 'de' ? 'Dossier & Blog' : 'Dossier & Blog'} | Forkit`;
+    document.title = `${currentLang === 'de' ? 'Dossier & Blog' : 'Dossier & Blog'} | Fork:it`;
     
     // Scroll to top on component mount
     window.scrollTo(0, 0);
@@ -210,7 +210,7 @@ const BlogPage: React.FC = () => {
                     : 'A comprehensive look at the increasing dominance of large digital platforms and their impact on small businesses, freelancers, and consumers.'}
                 </p>
                 <div className="flex flex-wrap items-center gap-6 text-white/80 mb-8">
-                  <span>{currentLang === 'de' ? 'Von Redaktion FORKIT' : 'By FORKIT Editorial Team'}</span>
+                  <span>{currentLang === 'de' ? 'Von Redaktion Fork:it' : 'By Fork:it Editorial Team'}</span>
                   <span>15.11.2023</span>
                   <span>{currentLang === 'de' ? 'Lesezeit: 15 Min.' : 'Reading time: 15 min.'}</span>
                 </div>

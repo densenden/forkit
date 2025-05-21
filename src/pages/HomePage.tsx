@@ -138,7 +138,7 @@ const HomePage: React.FC = () => {
           position="center"
           overlayOpacity="medium"
         >
-          <div className="max-w-3xl mx-auto text-center pt-24 md:pt-32">
+          <div className="max-w-3xl mx-auto text-center">
             <h2 className="homepage-hero-title mb-8 fade-in">
               Manifest 1.1
             </h2>
